@@ -353,6 +353,7 @@ body{
 
     font-size:14px;
 
+
 }
 
 
@@ -518,6 +519,29 @@ body{
 
 
 /* ==================================================
+   LOCATION
+================================================== */
+
+.location .icon{
+
+    color:var(--gold);
+
+}
+
+.location{
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(213,154,85,.08),
+            rgba(244,236,223,.02)
+        );
+
+}
+
+
+/* ==================================================
    LINK TEXT
 ================================================== */
 
@@ -599,57 +623,115 @@ body{
 
 
 /* ==================================================
-   LOCATION
-================================================== */
-
-.location .icon{
-    color:var(--gold);
-}
-
-.location{
-    background:
-        linear-gradient(110deg,rgba(213,154,85,.08),rgba(244,236,223,.02));
-}
-
-/* ==================================================
-   OMEGA PROMO
+   OMEGA CREATOR
 ================================================== */
 
 .omega-promo{
+
     margin-top:15px;
+
     min-height:64px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     gap:10px;
-    padding:10px 14px;
+
+    padding:10px 16px;
+
     border-radius:18px;
+
     text-decoration:none;
+
     color:var(--cream);
-    background:linear-gradient(110deg,rgba(213,154,85,.10),rgba(244,236,223,.025));
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(213,154,85,.10),
+            rgba(244,236,223,.025)
+        );
+
     border:1px solid rgba(213,154,85,.22);
-    box-shadow:0 10px 30px rgba(0,0,0,.18);
-    transition:.25s ease;
+
+    box-shadow:
+
+        0 10px 30px rgba(0,0,0,.18);
+
+    transition:
+
+        transform .25s ease,
+
+        border-color .25s ease,
+
+        box-shadow .25s ease,
+
+        background .25s ease;
+
 }
+
 
 .omega-promo:hover{
+
     transform:translateY(-3px);
-    border-color:rgba(213,154,85,.45);
-    box-shadow:0 12px 34px rgba(213,154,85,.10);
+
+    border-color:
+
+        rgba(213,154,85,.45);
+
+    background:
+
+        linear-gradient(
+            110deg,
+            rgba(213,154,85,.14),
+            rgba(244,236,223,.035)
+        );
+
+    box-shadow:
+
+        0 12px 34px rgba(213,154,85,.10);
+
 }
+
 
 .omega-mark{
+
     font-family:Arial,sans-serif;
+
     font-size:18px;
+
     font-weight:800;
+
     letter-spacing:3px;
+
     color:var(--gold);
+
 }
 
+
 .omega-text{
+
     font-size:10.5px;
+
     color:var(--gray);
+
 }
+
+
+.omega-promo > i{
+
+    font-size:11px;
+
+    color:var(--gold);
+
+    margin-right:3px;
+
+}
+
 
 /* ==================================================
    BOTTOM ACTIONS
@@ -932,11 +1014,6 @@ body{
 
             <div class="logo">
 
-                <!--
-                    لوگوی پیج را با نام logo.png
-                    کنار فایل HTML قرار بده
-                -->
-
                 <img
                     src="logo.png"
                     alt="Sajad Gol">
@@ -1002,11 +1079,6 @@ body{
 
     <!-- =========================================
          MAIN LINKS
-         ORDER:
-         1 PHONE
-         2 TELEGRAM
-         3 INSTAGRAM
-         4 WEBSITE
     ========================================== -->
 
     <div class="links">
@@ -1051,6 +1123,7 @@ body{
             class="link telegram"
             href="https://t.me/Sajadtna"
             target="_blank"
+            rel="noopener noreferrer"
         >
 
             <div class="icon">
@@ -1085,6 +1158,7 @@ body{
             class="link instagram"
             href="https://instagram.com/sajad_.gol"
             target="_blank"
+            rel="noopener noreferrer"
         >
 
             <div class="icon">
@@ -1119,6 +1193,7 @@ body{
             class="link website"
             href="https://sajadgol.ir/"
             target="_blank"
+            rel="noopener noreferrer"
         >
 
             <div class="icon">
@@ -1146,20 +1221,25 @@ body{
         </a>
 
 
+
         <!-- ================= LOCATION ================= -->
 
         <a
             class="link location"
             href="https://maps.app.goo.gl/83iifeWjnusHrSeU7?g_st=ac"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
         >
 
             <div class="icon">
+
                 <i class="fa-solid fa-location-dot"></i>
+
             </div>
 
+
             <div class="link-text">
+
                 <span class="link-title">
                     Location
                 </span>
@@ -1167,7 +1247,9 @@ body{
                 <span class="link-subtitle">
                     آدرس و مسیریابی در رشت
                 </span>
+
             </div>
+
 
             <i class="fa-solid fa-location-arrow arrow"></i>
 
@@ -1178,18 +1260,30 @@ body{
 
 
 
-    <!-- ================= OMEGA ================= -->
+    <!-- =========================================
+         OMEGA CREATOR
+    ========================================== -->
 
     <a
         class="omega-promo"
         href="https://omegawebb.github.io/OMEGA/"
         target="_blank"
-        rel="noopener"
-        aria-label="OMEGA - سازنده کارت دیجیتال"
+        rel="noopener noreferrer"
+        aria-label="سایت سازنده کارت دیجیتال OMEGA"
     >
-        <span class="omega-mark">OMEGA</span>
-        <span class="omega-text">سازنده کارت دیجیتال</span>
+
+        <span class="omega-mark">
+            OMEGA
+        </span>
+
+        <span class="omega-text">
+            طراحی و ساخت کارت دیجیتال توسط OMEGA
+        </span>
+
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
     </a>
+
 
 
     <!-- =========================================
@@ -1274,7 +1368,9 @@ body{
 
 
 
-    <!-- FOOTER -->
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
 
     <div class="footer">
 
@@ -1309,6 +1405,7 @@ TEL;TYPE=CELL:+989369855063
 URL:https://sajadgol.ir/
 NOTE:گلفروشی سجاد گل - رشت
 END:VCARD`;
+
 
     const blob = new Blob(
         [vcard],
