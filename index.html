@@ -1,886 +1,987 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#030303">
-
-<title>AMIR HOSIN SHAD</title>
-<meta name="description" content="Amir Hosin Shad — Private Digital Card">
+<meta name="theme-color" content="#080809">
+<meta name="description" content="AMIR HOSIN SHAD | Digital Card">
+<title>AMIR HOSIN SHAD | Digital Card</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ================= RESET ================= */
+:root {
+  --bg: #080809;
+  --red: #f5223b;
+  --red-light: #ff5264;
+  --gold: #d9b77a;
+  --white: #f6f3f4;
+  --muted: #a5a0a5;
+  --omega-blue: #168cff;
+  --omega-cyan: #43d5ff;
+}
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-:root {
-    --black: #030303;
-    --gold: #d4af37;
-    --gold-light: #fff0a0;
-    --red: #700000;
-    --white: #f5f5f5;
-}
-
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at 50% 5%, rgba(120,0,0,.22), transparent 32%),
-        radial-gradient(circle at 10% 90%, rgba(212,175,55,.07), transparent 25%),
-        var(--black);
-    color: white;
-    font-family: "Inter", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px 15px;
-    overflow-x: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "Vazirmatn", sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* ================= BACKGROUND ================= */
-
-.background {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.red-light {
-    position: absolute;
-    width: 480px;
-    height: 480px;
-    top: -230px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #700000;
-    filter: blur(170px);
-    opacity: .16;
-    animation: redLight 7s ease-in-out infinite alternate;
+button { font: inherit; }
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 25%, rgba(245,34,59,.15), transparent 38%),
+    radial-gradient(ellipse at 90% 75%, rgba(100,0,20,.12), transparent 36%),
+    #080809;
 }
 
-.gold-light {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    right: -150px;
-    bottom: -130px;
-    background: var(--gold);
-    filter: blur(170px);
-    opacity: .05;
-    animation: goldLight 8s ease-in-out infinite alternate;
+.scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .2;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
 
-@keyframes redLight {
-    from {
-        transform: translateX(-50%) scale(.8);
-        opacity: .09;
-    }
-    to {
-        transform: translateX(-50%) scale(1.2);
-        opacity: .23;
-    }
+.ambient {
+  position: absolute;
+  width: 70vw;
+  height: 70vw;
+  max-width: 650px;
+  max-height: 650px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .15;
+  animation: ambientMove 12s ease-in-out infinite alternate;
 }
 
-@keyframes goldLight {
-    from { transform: translate(0,0); }
-    to { transform: translate(-130px,-100px); }
+.ambient.one {
+  top: -25%;
+  left: -20%;
+  background: #ff102f;
 }
 
-.particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 9px var(--gold);
-    opacity: .3;
-    animation: particleMove linear infinite;
+.ambient.two {
+  right: -25%;
+  bottom: -30%;
+  background: #740018;
+  animation-delay: -6s;
 }
 
-.p1 { left: 8%; top: 20%; animation-duration: 9s; }
-.p2 { left: 22%; top: 70%; animation-duration: 13s; }
-.p3 { left: 45%; top: 25%; animation-duration: 11s; }
-.p4 { left: 70%; top: 78%; animation-duration: 15s; }
-.p5 { left: 91%; top: 25%; animation-duration: 10s; }
-.p6 { left: 58%; top: 90%; animation-duration: 12s; }
-.p7 { left: 14%; top: 45%; animation-duration: 14s; }
-.p8 { left: 83%; top: 53%; animation-duration: 8s; }
-
-@keyframes particleMove {
-    0% {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    40% { opacity: .55; }
-    100% {
-        transform: translateY(-120px);
-        opacity: 0;
-    }
+@keyframes ambientMove {
+  from { transform: translate(0,0) scale(.9); }
+  to { transform: translate(7%,8%) scale(1.15); }
 }
 
-/* ================= MAIN CARD ================= */
-
-.card {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 430px;
-    padding: 34px 24px 20px;
-    border-radius: 30px;
-    background: linear-gradient(
-        145deg,
-        rgba(255,255,255,.065),
-        rgba(255,255,255,.012)
-    );
-    border: 1px solid rgba(212,175,55,.25);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    box-shadow:
-        0 40px 100px rgba(0,0,0,.85),
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 0 60px rgba(100,0,0,.08);
-    overflow: hidden;
-    animation: cardEnter 1.1s cubic-bezier(.16,1,.3,1) forwards;
-    opacity: 0;
-    transform: translateY(30px) scale(.96);
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-@keyframes cardEnter {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+.topbar {
+  width: min(100% - 32px, 540px);
+  margin: 0 auto;
+  padding: 20px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: fadeDown .8s ease both;
 }
 
-.card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-        120deg,
-        transparent 20%,
-        var(--gold),
-        var(--red),
-        transparent 80%
-    );
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: borderRotate 6s linear infinite;
-    pointer-events: none;
+.top-brand {
+  font: 800 12px "Orbitron", sans-serif;
+  letter-spacing: 2px;
+  color: var(--gold);
 }
 
-@keyframes borderRotate {
-    to { filter: hue-rotate(25deg); }
-}
-
-.top-line {
-    position: absolute;
-    top: 0;
-    left: 20%;
-    width: 60%;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--gold),
-        var(--gold-light),
-        var(--gold),
-        transparent
-    );
-    box-shadow: 0 0 14px rgba(212,175,55,.7);
-    animation: linePulse 3s ease-in-out infinite;
-}
-
-@keyframes linePulse {
-    0%,100% { opacity: .45; }
-    50% { opacity: 1; }
-}
-
-/* ================= PROFILE ================= */
-
-.profile {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-}
-
-.avatar-wrapper {
-    position: relative;
-    width: 125px;
-    height: 125px;
-    margin: 0 auto 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.avatar-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    background: conic-gradient(
-        from 0deg,
-        transparent,
-        var(--gold),
-        transparent,
-        #800000,
-        transparent
-    );
-    animation: rotateRing 6s linear infinite;
-    filter: drop-shadow(0 0 8px rgba(212,175,55,.3));
-}
-
-@keyframes rotateRing {
-    to { transform: rotate(360deg); }
-}
-
-.avatar-wrapper::after {
-    content: "";
-    position: absolute;
-    inset: -3px;
-    border-radius: 50%;
-    border: 1px solid rgba(212,175,55,.35);
-}
-
-.avatar {
-    position: relative;
-    z-index: 2;
-    width: 115px;
-    height: 115px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #050505;
-    background: #111;
-    box-shadow:
-        0 0 0 2px rgba(212,175,55,.3),
-        0 0 35px rgba(120,0,0,.3);
-}
-
-.status {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 13px;
-    border-radius: 30px;
-    background: rgba(255,255,255,.035);
-    border: 1px solid rgba(255,255,255,.07);
-    color: #999;
-    font-size: 9px;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
+.top-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 10px;
 }
 
 .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #b30000;
-    box-shadow: 0 0 8px #b30000;
-    animation: statusPulse 2s infinite;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #54d98c;
+  box-shadow: 0 0 10px #54d98c;
 }
 
-@keyframes statusPulse {
-    50% { opacity: .3; }
+.page {
+  width: min(100% - 28px, 440px);
+  margin: 10px auto 42px;
+}
+
+.profile-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(30,24,27,.96), rgba(10,10,12,.98) 58%);
+  box-shadow:
+    0 28px 90px rgba(0,0,0,.48),
+    0 0 45px rgba(245,34,59,.06),
+    inset 0 1px rgba(255,255,255,.045);
+  animation: cardEnter .9s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.profile-card::before {
+  content: "";
+  position: absolute;
+  top: -140px;
+  left: 50%;
+  width: 320px;
+  height: 300px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(245,34,59,.15);
+  filter: blur(65px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.card-top-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), var(--gold), transparent);
+}
+
+.card-content {
+  position: relative;
+  padding: 27px 23px 23px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: "";
+  height: 1px;
+  width: 25px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.eyebrow::after { transform: rotate(180deg); }
+
+.avatar-wrap {
+  position: relative;
+  width: 154px;
+  height: 154px;
+  margin: 25px auto 21px;
+  display: grid;
+  place-items: center;
+}
+
+.avatar-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(245,34,59,.8);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(245,34,59,.16);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+
+.avatar-ring::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px dashed rgba(217,183,122,.65);
+  border-radius: 50%;
+  animation: rotateRing 24s linear infinite;
+}
+
+.avatar-ring::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(245,34,59,.18);
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 3px solid #191519;
+  background: #191519;
+  box-shadow: 0 0 28px rgba(245,34,59,.23);
+}
+
+.avatar-fallback {
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #28151a, #111);
+  color: var(--gold);
+  font: 700 40px "Orbitron", sans-serif;
+  border: 3px solid #191519;
+}
+
+.verified {
+  position: absolute;
+  bottom: 4px;
+  right: 12px;
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #161216;
+  border: 1px solid rgba(217,183,122,.55);
+  color: var(--gold);
+  box-shadow: 0 5px 15px #000;
+}
+
+.verified svg {
+  width: 16px;
+  height: 16px;
 }
 
 .name {
-    font-family: "Cinzel", serif;
-    font-size: 27px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--white);
-    text-shadow: 0 0 25px rgba(255,255,255,.08);
-    margin-bottom: 8px;
+  font: 800 clamp(23px, 6vw, 30px) "Orbitron", sans-serif;
+  letter-spacing: 1.3px;
+  line-height: 1.5;
+  color: #fff;
+  text-shadow: 0 0 25px rgba(245,34,59,.17);
 }
 
-.subtitle {
-    color: #a88936;
-    font-size: 9px;
-    letter-spacing: 5px;
-    font-weight: 600;
+.name span { color: var(--red-light); }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 2px;
 }
 
-/* ================= ORNAMENT ================= */
-
-.ornament {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 27px 0;
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(217,183,122,.35));
 }
 
-.ornament-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(212,175,55,.35)
-    );
+.divider::after { transform: rotate(180deg); }
+
+/* Contact buttons: icons + names only */
+.contact-list {
+  display: grid;
+  gap: 10px;
 }
 
-.ornament-line:last-child {
-    background: linear-gradient(
-        90deg,
-        rgba(212,175,55,.35),
-        transparent
-    );
+.contact-btn {
+  --accent: var(--red);
+  position: relative;
+  isolation: isolate;
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 10px 13px;
+  border: 1px solid rgba(255,255,255,.075);
+  border-radius: 15px;
+  overflow: hidden;
+  background: linear-gradient(110deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+  transition: transform .25s ease, border-color .25s ease, background .25s ease;
+  text-align: right;
 }
 
-.ornament-symbol {
-    color: var(--gold);
-    font-size: 11px;
-    text-shadow: 0 0 10px rgba(212,175,55,.5);
+.contact-btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
+  transform: translateX(110%);
+  transition: transform .45s ease;
 }
 
-/* ================= SOCIAL LINKS ================= */
-
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 11px;
+.contact-btn:hover,
+.contact-btn:focus-visible {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  outline: none;
 }
 
-.link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    min-height: 67px;
-    padding: 9px 13px;
-    text-decoration: none;
-    color: white;
-    border-radius: 17px;
-    background: linear-gradient(
-        110deg,
-        rgba(255,255,255,.055),
-        rgba(255,255,255,.015)
-    );
-    border: 1px solid rgba(255,255,255,.065);
-    overflow: hidden;
-    transition:
-        transform .35s cubic-bezier(.16,1,.3,1),
-        border-color .35s,
-        box-shadow .35s;
+.contact-btn:hover::before,
+.contact-btn:focus-visible::before { transform: translateX(0); }
+
+.contact-btn:active { transform: scale(.985); }
+
+.contact-btn.telegram { --accent: #2ca5e0; }
+.contact-btn.instagram { --accent: #e64a83; }
+.contact-btn.whatsapp { --accent: #27d66f; }
+.contact-btn.phone { --accent: #e7b866; }
+
+.icon-box {
+  width: 43px;
+  height: 43px;
+  flex: 0 0 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  transition: box-shadow .25s ease, transform .25s ease;
 }
 
-.link::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 80%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.07),
-        transparent
-    );
-    transform: skewX(-20deg);
-    transition: .7s;
-    pointer-events: none;
+.icon-box svg {
+  width: 23px;
+  height: 23px;
+  display: block;
 }
 
-.link:hover::before {
-    left: 140%;
+.contact-btn:hover .icon-box {
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 18%, transparent);
+  transform: scale(1.04);
 }
 
-.link:hover {
-    transform: translateY(-4px) scale(1.015);
-    border-color: rgba(212,175,55,.32);
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.45),
-        0 0 20px rgba(212,175,55,.05);
+.contact-info {
+  flex: 1;
+  min-width: 0;
 }
 
-/* ================= SVG ICONS ================= */
-
-.icon {
-    width: 46px;
-    height: 46px;
-    min-width: 46px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 14px;
-    margin-right: 13px;
-    background: linear-gradient(145deg,#1b1b1b,#080808);
-    border: 1px solid rgba(212,175,55,.22);
-    color: var(--gold);
-    transition: .35s;
-}
-
-.icon svg {
-    width: 25px;
-    height: 25px;
-    display: block;
-    overflow: visible;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: transform .35s, filter .35s;
-}
-
-.link:hover .icon {
-    background: linear-gradient(145deg,#400000,#0b0b0b);
-    color: #fff0a0;
-    border-color: rgba(212,175,55,.6);
-    box-shadow: 0 0 18px rgba(120,0,0,.25);
-}
-
-.link:hover .icon svg {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 5px currentColor);
-}
-
-/* PHONE */
-
-.phone-icon svg {
-    fill: currentColor;
-    stroke: none;
-}
-
-/* TELEGRAM */
-
-.telegram-icon svg {
-    fill: currentColor;
-    stroke: none;
-}
-
-/* INSTAGRAM */
-
-.instagram-icon svg {
-    stroke-width: 1.9;
-}
-
-.instagram-icon .ig-dot {
-    fill: currentColor;
-    stroke: none;
-}
-
-/* WHATSAPP */
-
-.whatsapp-icon svg {
-    stroke-width: 1.9;
-}
-
-.whatsapp-icon .wa-phone {
-    fill: currentColor;
-    stroke: none;
-}
-
-/* ================= LINK TEXT ================= */
-
-.link-info {
-    flex: 1;
-    text-align: left;
-    min-width: 0;
-}
-
-.link-title {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 4px;
-}
-
-.link-value {
-    display: block;
-    font-size: 10px;
-    color: #777;
-    letter-spacing: .5px;
-    overflow-wrap: anywhere;
+.contact-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f6f3f4;
 }
 
 .arrow {
-    color: #444;
-    font-size: 12px;
-    transition: .35s;
-    margin-left: 8px;
+  color: #777076;
+  font-size: 18px;
+  transition: transform .25s ease, color .25s ease;
 }
 
-.link:hover .arrow {
-    color: var(--gold);
-    transform: translateX(4px);
+.contact-btn:hover .arrow {
+  color: var(--accent);
+  transform: translateX(-3px);
 }
 
-/* ================= OMEGA BRAND ================= */
-
-.omega-section {
-    position: relative;
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,.055);
-    text-align: center;
+.music-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 17px;
+  padding: 12px 15px;
+  border: 1px solid rgba(217,183,122,.24);
+  border-radius: 12px;
+  background: rgba(217,183,122,.045);
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 11px;
+  transition: background .2s ease, border-color .2s ease;
 }
 
-.omega-powered {
-    font-size: 7px;
-    letter-spacing: 4px;
-    color: #666;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+.music-btn:hover {
+  background: rgba(217,183,122,.09);
+  border-color: rgba(217,183,122,.5);
 }
 
-.omega-link {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 11px;
-    padding: 10px 18px;
-    border-radius: 14px;
-    text-decoration: none;
-    overflow: hidden;
-    background: linear-gradient(
-        135deg,
-        rgba(212,175,55,.08),
-        rgba(100,0,0,.10)
-    );
-    border: 1px solid rgba(212,175,55,.18);
-    transition: .4s cubic-bezier(.16,1,.3,1);
-    box-shadow: inset 0 0 20px rgba(255,255,255,.015);
+.music-btn svg {
+  width: 17px;
+  height: 17px;
 }
 
-.omega-link::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 70%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.09),
-        transparent
-    );
-    transform: skewX(-20deg);
-    transition: .8s;
+.music-bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 15px;
 }
 
-.omega-link:hover::before {
-    left: 130%;
+.music-bars i {
+  width: 3px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--gold);
 }
 
-.omega-logo {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    border: 1px solid rgba(212,175,55,.5);
-    color: var(--gold);
-    font-family: "Cinzel", serif;
-    font-size: 17px;
-    font-weight: 700;
-    box-shadow: 0 0 15px rgba(212,175,55,.08);
-    transition: .4s;
+.music-btn.playing .music-bars i {
+  animation: equalize .7s ease-in-out infinite alternate;
 }
 
-.omega-logo::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
-    border-radius: 50%;
-    border: 1px solid rgba(139,0,0,.7);
+.music-btn.playing .music-bars i:nth-child(2) { animation-delay: -.5s; }
+.music-btn.playing .music-bars i:nth-child(3) { animation-delay: -.2s; }
+.music-btn.playing .music-bars i:nth-child(4) { animation-delay: -.4s; }
+
+@keyframes equalize {
+  from { height: 3px; }
+  to { height: 14px; }
+}
+
+.card-footer {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,.06);
+  background: rgba(0,0,0,.16);
+  color: #746d72;
+  font-size: 9px;
+  direction: ltr;
+  letter-spacing: 1px;
+}
+
+.footer-mark {
+  color: var(--red-light);
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+}
+
+/* OMEGA section */
+.omega-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 19px;
+  padding: 23px 19px 19px;
+  border-radius: 22px;
+  border: 1px solid rgba(22,140,255,.28);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(22,140,255,.13), transparent 60%),
+    linear-gradient(145deg, #0a111c, #07090e 75%);
+  box-shadow: 0 12px 45px rgba(0,0,0,.28);
+  text-align: center;
+  animation: fadeUp .9s .3s both;
+}
+
+.omega-card::before {
+  content: "";
+  position: absolute;
+  inset: auto -30% -100px;
+  height: 150px;
+  z-index: -1;
+  background: rgba(22,140,255,.12);
+  filter: blur(45px);
+}
+
+.omega-label {
+  color: #a4cfff;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.omega-symbol {
+  margin-top: 9px;
+  font: 400 58px Georgia, serif;
+  line-height: 1.2;
+  color: var(--omega-cyan);
+  text-shadow: 0 0 18px rgba(67,213,255,.45);
 }
 
 .omega-name {
-    font-family: "Cinzel", serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: #ddd;
-    transition: .4s;
+  margin-top: 1px;
+  color: #fff;
+  font: 800 25px "Orbitron", sans-serif;
+  letter-spacing: 5px;
+  text-shadow: 0 0 18px rgba(22,140,255,.28);
 }
 
-.omega-mini {
-    display: block;
-    font-size: 6px;
-    letter-spacing: 2px;
-    color: #8b7846;
-    margin-top: 2px;
+.omega-desc {
+  margin-top: 9px;
+  color: #a9b9cb;
+  font-size: 11px;
+  line-height: 2;
+}
+
+.omega-services {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.omega-services span {
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(67,213,255,.18);
+  color: #a7ddff;
+  background: rgba(22,140,255,.055);
+  font-size: 9px;
+}
+
+.omega-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 19px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  color: #04101c;
+  background: linear-gradient(110deg, var(--omega-blue), var(--omega-cyan));
+  box-shadow: 0 0 22px rgba(22,140,255,.12);
+  font-size: 12px;
+  font-weight: 800;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .omega-link:hover {
-    transform: translateY(-4px) scale(1.04);
-    border-color: rgba(212,175,55,.5);
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.45),
-        0 0 25px rgba(212,175,55,.09);
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(67,213,255,.25);
 }
 
-.omega-link:hover .omega-logo {
-    color: white;
-    border-color: var(--gold);
-    box-shadow: 0 0 18px rgba(212,175,55,.3);
-    transform: rotate(180deg);
+.omega-link svg {
+  width: 17px;
+  height: 17px;
 }
 
-.omega-link:hover .omega-name {
-    color: var(--gold);
-    letter-spacing: 5px;
+.copyright {
+  margin: 22px 0 0;
+  color: #6d676c;
+  text-align: center;
+  font-size: 9px;
+  line-height: 2;
 }
 
-/* ================= FOOTER ================= */
+.copyright span { color: var(--red-light); }
 
-.footer {
-    text-align: center;
-    margin-top: 14px;
-    color: #555;
-    font-size: 7px;
-    letter-spacing: 3px;
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateY(25px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.footer span {
-    color: var(--red);
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ================= MOBILE ================= */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-@media (max-width: 480px) {
-    body {
-        padding: 14px;
-    }
+@keyframes ringPulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(245,34,59,.14); }
+  50% { box-shadow: 0 0 25px rgba(245,34,59,.32); }
+}
 
-    .card {
-        padding: 30px 17px 18px;
-        border-radius: 26px;
-    }
+@keyframes rotateRing {
+  to { transform: rotate(360deg); }
+}
 
-    .avatar-wrapper {
-        width: 115px;
-        height: 115px;
-    }
-
-    .avatar {
-        width: 105px;
-        height: 105px;
-    }
-
-    .name {
-        font-size: 23px;
-        letter-spacing: 1.5px;
-    }
-
-    .subtitle {
-        font-size: 8px;
-        letter-spacing: 4px;
-    }
-
-    .link {
-        min-height: 64px;
-    }
-
-    .omega-link {
-        padding: 9px 16px;
-    }
+@media (min-width: 600px) {
+  .page { margin-top: 20px; }
+  .card-content { padding: 32px 28px 25px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-    }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
-
-<!-- BACKGROUND -->
-
-<div class="background" aria-hidden="true">
-    <div class="red-light"></div>
-    <div class="gold-light"></div>
-    <div class="particle p1"></div>
-    <div class="particle p2"></div>
-    <div class="particle p3"></div>
-    <div class="particle p4"></div>
-    <div class="particle p5"></div>
-    <div class="particle p6"></div>
-    <div class="particle p7"></div>
-    <div class="particle p8"></div>
+<div class="scene" aria-hidden="true">
+  <div class="ambient one"></div>
+  <div class="ambient two"></div>
 </div>
 
-<!-- MAIN CARD -->
+<canvas id="particles" aria-hidden="true"></canvas>
 
-<main class="card">
-    <div class="top-line"></div>
+<header class="topbar">
+  <div class="top-brand">PERSONAL ID</div>
+  <div class="top-status">
+    <span class="status-dot"></span>
+    <span>DIGITAL PROFILE</span>
+  </div>
+</header>
 
-    <!-- PROFILE -->
+<main class="page">
+  <section class="profile-card" aria-label="کارت دیجیتال امیرحسین شاد">
+    <div class="card-top-line"></div>
 
-    <section class="profile">
-        <div class="avatar-wrapper">
-            <img
-                class="avatar"
-                src="profile.jpg"
-                alt="Amir Hosin Shad"
-                onerror="this.style.visibility='hidden'">
+    <div class="card-content">
+      <div class="eyebrow">THE PERSONAL BRAND</div>
+
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+
+        <img class="avatar"
+             src="profile.jpg"
+             alt="تصویر پروفایل امیرحسین شاد"
+             onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+
+        <div class="avatar-fallback" hidden>AS</div>
+
+        <div class="verified" aria-label="نشان پروفایل">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3 14.7 5l3.4-.1.9 3.2 2.5 2-1.1 3.2.6 3.3-3 1.6-1.5 3.1-3.4-.7-3.1 1.4-2.4-2.5-3.3-.5-.4-3.4L1.8 13l1.4-3.1-.5-3.4 3.2-1.3L8 2.5z"/>
+            <path d="m8 12 2.5 2.5L16 9"/>
+          </svg>
         </div>
+      </div>
 
-        <div class="status">
-            <span class="status-dot"></span>
-            ONLINE
-        </div>
+      <h1 class="name">AMIR HOSIN <span>SHAD</span></h1>
 
-        <h1 class="name">AMIR HOSIN SHAD</h1>
+      <div class="divider">GET IN TOUCH</div>
 
-        <div class="subtitle">PRIVATE DIGITAL CARD</div>
-    </section>
+      <nav class="contact-list" aria-label="راه‌های ارتباطی">
 
-    <!-- ORNAMENT -->
+        <!-- Phone -->
+        <a class="contact-btn phone" href="tel:+989384704646" aria-label="شماره تماس">
+          <span class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2.1Z"/>
+            </svg>
+          </span>
+          <span class="contact-info">
+            <span class="contact-title">شماره تماس</span>
+          </span>
+          <span class="arrow" aria-hidden="true">‹</span>
+        </a>
 
-    <div class="ornament" aria-hidden="true">
-        <div class="ornament-line"></div>
-        <div class="ornament-symbol">◆</div>
-        <div class="ornament-line"></div>
+        <!-- Telegram -->
+        <a class="contact-btn telegram" href="https://t.me/Amirm_shad"
+           target="_blank" rel="noopener noreferrer" aria-label="تلگرام">
+          <span class="icon-box">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21.8 3.4a1.7 1.7 0 0 0-1.8-.2L2.6 10.1c-1.2.5-1.1 2.2.1 2.6l4.4 1.4 1.7 5.2c.4 1.1 1.8 1.3 2.4.3l2.5-3.4 4.4 3.3c.9.7 2.2.2 2.4-.9l2.2-13.4a1.8 1.8 0 0 0-.9-1.8ZM9 13.3l8.7-6.1-6.9 7.6-.3 3.2L9 13.3Z"/>
+            </svg>
+          </span>
+          <span class="contact-info">
+            <span class="contact-title">تلگرام</span>
+          </span>
+          <span class="arrow" aria-hidden="true">‹</span>
+        </a>
+
+        <!-- Instagram -->
+        <a class="contact-btn instagram" href="https://instagram.com/amirmshad"
+           target="_blank" rel="noopener noreferrer" aria-label="اینستاگرام">
+          <span class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M17.5 6.5h.01"/>
+            </svg>
+          </span>
+          <span class="contact-info">
+            <span class="contact-title">اینستاگرام</span>
+          </span>
+          <span class="arrow" aria-hidden="true">‹</span>
+        </a>
+
+        <!-- WhatsApp -->
+        <a class="contact-btn whatsapp" href="https://wa.me/989384704646"
+           target="_blank" rel="noopener noreferrer" aria-label="واتساپ">
+          <span class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20l.9-4.7a8.5 8.5 0 1 1 16.6-3.6Z"/>
+              <path d="M8.5 8.5c.4-.7.8-.7 1.1-.7h.4c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.8c-.2.2-.2.4 0 .6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.5 0 .4-.2 1.2-.7 1.6-.5.5-1.2.8-2 .7-1.1-.1-2.5-.7-4-2-1.2-1-2.2-2.5-2.5-3.5-.3-.9 0-1.9.7-2.5Z"/>
+            </svg>
+          </span>
+          <span class="contact-info">
+            <span class="contact-title">واتساپ</span>
+          </span>
+          <span class="arrow" aria-hidden="true">‹</span>
+        </a>
+      </nav>
+
+      <button class="music-btn" id="musicToggle" type="button" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
+        </svg>
+        <span id="musicText">فعال کردن موسیقی پس‌زمینه</span>
+        <span class="music-bars" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </span>
+      </button>
     </div>
 
-    <!-- SOCIAL LINKS -->
+    <div class="card-footer">
+      <span>PERSONAL DIGITAL CARD</span>
+      <span class="footer-mark">A.S. / 01</span>
+    </div>
+  </section>
 
-    <div class="links">
+  <!-- OMEGA -->
+  <section class="omega-card" aria-label="شرکت OMEGA">
+    <div class="omega-label">POWERED BY</div>
+    <div class="omega-symbol" aria-hidden="true">Ω</div>
+    <div class="omega-name">OMEGA</div>
 
-        <!-- PHONE -->
+    <p class="omega-desc">
+      طراحی سایت و تولید محتوا<br>
+      جایی که ایده‌ها به تجربه‌های دیجیتال تبدیل می‌شوند.
+    </p>
 
-        <a class="link" href="tel:+989384704646">
-            <div class="icon phone-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M6.6 2.8 3.9 3C2.8 3.1 2 4 2.1 5.1
-                    c.6 9.2 7.6 16.2 16.8 16.8
-                    1.1.1 2-.7 2.1-1.8l.2-2.7
-                    -5-2.3-2.1 2.1a15 15 0 0 1-6.9-6.9l2.1-2.1z"/>
-                </svg>
-            </div>
-
-            <div class="link-info">
-                <span class="link-title">Phone</span>
-                <span class="link-value">+98 938 470 4646</span>
-            </div>
-
-            <span class="arrow" aria-hidden="true">›</span>
-        </a>
-
-        <!-- TELEGRAM -->
-
-        <a class="link"
-           href="https://t.me/Amirm_shad"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="icon telegram-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M21.8 3.6 18.5 20c-.2 1.1-.9 1.4-1.8.9l-5.2-3.8-2.5 2.4c-.3.3-.6.5-1.1.5l.4-5.3 9.8-8.9c.4-.3-.1-.5-.6-.2L5.4 13.2.2 11.6c-1.1-.4 0-1.1.8-1.4l19.6-7.6c.9-.3 1.6.2 1.2 1z"/>
-                </svg>
-            </div>
-
-            <div class="link-info">
-                <span class="link-title">Telegram</span>
-                <span class="link-value">@Amirm_shad</span>
-            </div>
-
-            <span class="arrow" aria-hidden="true">›</span>
-        </a>
-
-        <!-- INSTAGRAM -->
-
-        <a class="link"
-           href="https://instagram.com/amirmshad"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="icon instagram-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="3" y="3" width="18" height="18" rx="5"/>
-                    <circle cx="12" cy="12" r="4.2"/>
-                    <circle class="ig-dot" cx="17.5" cy="6.7" r="1.2"/>
-                </svg>
-            </div>
-
-            <div class="link-info">
-                <span class="link-title">Instagram</span>
-                <span class="link-value">@amirmshad</span>
-            </div>
-
-            <span class="arrow" aria-hidden="true">›</span>
-        </a>
-
-        <!-- WHATSAPP -->
-
-        <a class="link"
-           href="https://wa.me/989384704646"
-           target="_blank"
-           rel="noopener noreferrer">
-
-            <div class="icon whatsapp-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M20.5 11.7a8.5 8.5 0 0 1-12.4 7.6L3 20.8l1.5-5A8.5 8.5 0 1 1 20.5 11.7Z"/>
-                    <path class="wa-phone" d="M8.2 7.5c-.5.1-.9.8-.9 1.5 0 2 2.9 5.4 5.3 6.5.9.4 1.8.3 2.3-.5l.7-1.1-2.7-1.7-1.1 1c-1.1-.5-2-1.4-2.5-2.5l1-1.1-1.6-2.6-1 .5Z"/>
-                </svg>
-            </div>
-
-            <div class="link-info">
-                <span class="link-title">WhatsApp</span>
-                <span class="link-value">+98 938 470 4646</span>
-            </div>
-
-            <span class="arrow" aria-hidden="true">›</span>
-        </a>
-
+    <div class="omega-services">
+      <span>طراحی وب‌سایت</span>
+      <span>تولید محتوا</span>
+      <span>هویت دیجیتال</span>
     </div>
 
-    <!-- OMEGA BRAND -->
+    <a class="omega-link" href="https://omegawebb.github.io/OMEGA/"
+       target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>
+      </svg>
+      مشاهده وب‌سایت OMEGA
+    </a>
+  </section>
 
-    <section class="omega-section">
-        <div class="omega-powered">DESIGNED &amp; POWERED BY</div>
-
-        <a class="omega-link"
-           href="https://omegawebb.github.io/OMEGA/"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Visit OMEGA Digital Studio">
-
-            <div class="omega-logo">Ω</div>
-
-            <div>
-                <div class="omega-name">OMEGA</div>
-                <span class="omega-mini">DIGITAL STUDIO</span>
-            </div>
-        </a>
-
-        <div class="footer">
-            PRIVATE CARD <span>•</span> 2026
-        </div>
-    </section>
-
+  <footer class="copyright">
+    DESIGNED WITH <span>♥</span> · AMIR HOSIN SHAD<br>
+    © <span id="year"></span> ALL RIGHTS RESERVED
+  </footer>
 </main>
 
+<script>
+(() => {
+  "use strict";
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Lightweight floating red particles
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let width = 0;
+  let height = 0;
+  let particles = [];
+  let frameId = 0;
+  let lastFrame = 0;
+
+  function resizeCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(38, Math.max(16, Math.floor(width / 12)));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.8 + .4,
+      vx: (Math.random() - .5) * .18,
+      vy: -(Math.random() * .25 + .06),
+      alpha: Math.random() * .35 + .08
+    }));
+
+    if (reducedMotion) drawStatic();
+  }
+
+  function drawStatic() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,65,82,${p.alpha})`;
+      ctx.fill();
+    });
+  }
+
+  function animate(time) {
+    if (document.hidden) {
+      frameId = 0;
+      return;
+    }
+
+    if (time - lastFrame < 40) {
+      frameId = requestAnimationFrame(animate);
+      return;
+    }
+
+    lastFrame = time;
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.y < -5) {
+        p.y = height + 5;
+        p.x = Math.random() * width;
+      }
+      if (p.x < -5) p.x = width + 5;
+      if (p.x > width + 5) p.x = -5;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,65,82,${p.alpha})`;
+      ctx.fill();
+    });
+
+    frameId = requestAnimationFrame(animate);
+  }
+
+  function startParticles() {
+    if (reducedMotion || frameId) return;
+    frameId = requestAnimationFrame(animate);
+  }
+
+  function stopParticles() {
+    if (frameId) cancelAnimationFrame(frameId);
+    frameId = 0;
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopParticles();
+    else startParticles();
+  });
+
+  window.addEventListener("resize", resizeCanvas, { passive: true });
+  resizeCanvas();
+  startParticles();
+
+  // Optional ambient music: starts only after the button is pressed.
+  const musicButton = document.getElementById("musicToggle");
+  const musicText = document.getElementById("musicText");
+  let audioContext = null;
+  let masterGain = null;
+  let playing = false;
+
+  async function startMusic() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContextClass) {
+      playing = false;
+      musicButton.classList.remove("playing");
+      musicButton.setAttribute("aria-pressed", "false");
+      musicText.textContent = "موسیقی در این مرورگر پشتیبانی نمی‌شود";
+      return;
+    }
+
+    try {
+      if (!audioContext) {
+        audioContext = new AudioContextClass();
+        masterGain = audioContext.createGain();
+        masterGain.gain.value = 0.0001;
+        masterGain.connect(audioContext.destination);
+
+        [110, 164.81, 220].forEach((frequency, index) => {
+          const oscillator = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+
+          oscillator.type = index === 1 ? "sine" : "triangle";
+          oscillator.frequency.value = frequency;
+          gain.gain.value = index === 0 ? 0.16 : 0.075;
+          oscillator.connect(gain);
+          gain.connect(masterGain);
+          oscillator.start();
+        });
+      }
+
+      await audioContext.resume();
+
+      if (playing) {
+        masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+        masterGain.gain.setTargetAtTime(0.11, audioContext.currentTime, 0.8);
+      }
+    } catch (error) {
+      playing = false;
+      musicButton.classList.remove("playing");
+      musicButton.setAttribute("aria-pressed", "false");
+      musicText.textContent = "موسیقی در دسترس نیست";
+    }
+  }
+
+  function stopMusic() {
+    if (!audioContext || !masterGain) return;
+    masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+    masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.15);
+  }
+
+  musicButton.addEventListener("click", () => {
+    playing = !playing;
+
+    if (playing) {
+      musicButton.classList.add("playing");
+      musicButton.setAttribute("aria-pressed", "true");
+      musicText.textContent = "خاموش کردن موسیقی پس‌زمینه";
+      startMusic();
+    } else {
+      musicButton.classList.remove("playing");
+      musicButton.setAttribute("aria-pressed", "false");
+      musicText.textContent = "فعال کردن موسیقی پس‌زمینه";
+      stopMusic();
+    }
+  });
+
+  window.addEventListener("pagehide", () => {
+    stopParticles();
+    if (audioContext && audioContext.state !== "closed") {
+      audioContext.close();
+    }
+  });
+})();
+</script>
 </body>
 </html>
