@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080809">
-<meta name="description" content="AMIR HOSIN SHAD | Digital Card">
-<title>AMIR HOSIN SHAD | Digital Card</title>
+<meta name="theme-color" content="#080708">
+
+<title>AMIR HOSIN SHAD | Personal ID</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,31 +13,44 @@
 
 <style>
 :root {
-  --bg: #080809;
-  --red: #f5223b;
-  --red-light: #ff5264;
-  --gold: #d9b77a;
-  --white: #f6f3f4;
-  --muted: #a5a0a5;
-  --omega-blue: #168cff;
-  --omega-cyan: #43d5ff;
+  --bg: #080708;
+  --card: #100e10;
+  --gold: #d8bb7b;
+  --gold-light: #f3dca4;
+  --red: #ed3656;
+  --red-dark: #751326;
+  --white: #f7f4f3;
+  --muted: #969095;
+  --border: rgba(216,187,123,.20);
 }
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
+  margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse at 50% 10%, rgba(105,12,31,.20), transparent 42%),
+    radial-gradient(ellipse at 0% 45%, rgba(104,10,30,.12), transparent 36%),
+    var(--bg);
   color: var(--white);
   font-family: "Vazirmatn", sans-serif;
-  -webkit-tap-highlight-color: transparent;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 a {
@@ -45,581 +58,645 @@ a {
   text-decoration: none;
 }
 
-button { font: inherit; }
-
-.scene {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  overflow: hidden;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 15% 25%, rgba(245,34,59,.15), transparent 38%),
-    radial-gradient(ellipse at 90% 75%, rgba(100,0,20,.12), transparent 36%),
-    #080809;
-}
-
-.scene::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: .2;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-  background-size: 44px 44px;
-}
-
 .ambient {
-  position: absolute;
-  width: 70vw;
-  height: 70vw;
-  max-width: 650px;
-  max-height: 650px;
+  position: fixed;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: .15;
+  filter: blur(100px);
+  pointer-events: none;
+  opacity: .18;
   animation: ambientMove 12s ease-in-out infinite alternate;
 }
 
 .ambient.one {
-  top: -25%;
-  left: -20%;
-  background: #ff102f;
+  background: #9d102c;
+  top: 10%;
+  left: -140px;
 }
 
 .ambient.two {
-  right: -25%;
-  bottom: -30%;
-  background: #740018;
-  animation-delay: -6s;
+  background: #8d6c30;
+  bottom: 5%;
+  right: -160px;
+  animation-delay: -4s;
 }
 
 @keyframes ambientMove {
-  from { transform: translate(0,0) scale(.9); }
-  to { transform: translate(7%,8%) scale(1.15); }
+  from { transform: translateY(-25px) scale(.9); }
+  to { transform: translateY(40px) scale(1.15); }
 }
 
-#particles {
+.particles {
   position: fixed;
   inset: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-.topbar {
-  width: min(100% - 32px, 540px);
-  margin: 0 auto;
-  padding: 20px 0 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  animation: fadeDown .8s ease both;
-}
-
-.top-brand {
-  font: 800 12px "Orbitron", sans-serif;
-  letter-spacing: 2px;
-  color: var(--gold);
-}
-
-.top-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 10px;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #54d98c;
-  box-shadow: 0 0 10px #54d98c;
+  opacity: .65;
 }
 
 .page {
-  width: min(100% - 28px, 440px);
-  margin: 10px auto 42px;
+  width: min(100% - 28px, 660px);
+  margin: 0 auto;
+  padding: 30px 0 38px;
 }
 
-.profile-card {
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 3px 42px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .7px;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #55d9a0;
+  box-shadow: 0 0 13px #55d9a0;
+}
+
+.top-title {
+  color: var(--gold);
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.main-card {
   position: relative;
-  isolation: isolate;
+  padding: 36px 24px 27px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 26px;
-  background: linear-gradient(145deg, rgba(30,24,27,.96), rgba(10,10,12,.98) 58%);
+  border: 1px solid rgba(216,187,123,.20);
+  border-radius: 34px 34px 20px 20px;
+  background:
+    radial-gradient(ellipse at 50% 12%, rgba(100,15,34,.22), transparent 46%),
+    linear-gradient(155deg, rgba(35,17,22,.92), rgba(13,12,14,.98) 38%, rgba(8,8,9,.98));
   box-shadow:
-    0 28px 90px rgba(0,0,0,.48),
-    0 0 45px rgba(245,34,59,.06),
-    inset 0 1px rgba(255,255,255,.045);
-  animation: cardEnter .9s cubic-bezier(.2,.8,.2,1) both;
+    0 0 0 1px rgba(255,255,255,.015) inset,
+    0 22px 90px rgba(0,0,0,.45),
+    0 0 65px rgba(125,13,38,.08);
+  animation: cardEnter 1s cubic-bezier(.2,.8,.2,1) both;
 }
 
-.profile-card::before {
+.main-card::before {
   content: "";
   position: absolute;
-  top: -140px;
-  left: 50%;
-  width: 320px;
-  height: 300px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: rgba(245,34,59,.15);
-  filter: blur(65px);
-  z-index: -1;
-  pointer-events: none;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: .8;
 }
 
-.card-top-line {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--red), var(--gold), transparent);
-}
-
-.card-content {
-  position: relative;
-  padding: 27px 23px 23px;
-  text-align: center;
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .eyebrow {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   color: var(--gold);
-  font-size: 9px;
-  font-weight: 600;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  font-weight: 800;
   letter-spacing: 3px;
+  text-align: center;
 }
 
 .eyebrow::before,
 .eyebrow::after {
   content: "";
+  width: 30px;
   height: 1px;
-  width: 25px;
   background: linear-gradient(90deg, transparent, var(--gold));
 }
 
-.eyebrow::after { transform: rotate(180deg); }
-
-.avatar-wrap {
-  position: relative;
-  width: 154px;
-  height: 154px;
-  margin: 25px auto 21px;
-  display: grid;
-  place-items: center;
+.eyebrow::after {
+  transform: rotate(180deg);
 }
 
-.avatar-ring {
+/* PROFILE: image and fallback occupy the SAME fixed frame */
+.profile-wrap {
+  position: relative;
+  width: 206px;
+  height: 206px;
+  margin: 42px auto 26px;
+  isolation: isolate;
+}
+
+.profile-halo {
+  position: absolute;
+  inset: -10px;
+  z-index: -1;
+  border: 1px solid rgba(237,54,86,.75);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(237,54,86,.12);
+  animation: haloPulse 3s ease-in-out infinite;
+}
+
+.profile-halo.halo-two {
+  inset: -17px;
+  border-color: rgba(216,187,123,.42);
+  border-style: dashed;
+  animation: haloSpin 24s linear infinite;
+}
+
+@keyframes haloPulse {
+  0%,100% { transform: scale(1); opacity: .65; }
+  50% { transform: scale(1.035); opacity: 1; }
+}
+
+@keyframes haloSpin {
+  to { transform: rotate(360deg); }
+}
+
+.profile-frame {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(245,34,59,.8);
+  overflow: hidden;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(245,34,59,.16);
-  animation: ringPulse 4s ease-in-out infinite;
+  border: 3px solid #22161a;
+  outline: 1px solid rgba(216,187,123,.5);
+  background: #171114;
+  box-shadow: 0 0 30px rgba(237,54,86,.16);
 }
 
-.avatar-ring::before {
-  content: "";
+/* Both layers fill one frame; fallback is hidden by default */
+.profile-photo,
+.profile-fallback {
   position: absolute;
-  inset: 7px;
-  border: 1px dashed rgba(217,183,122,.65);
-  border-radius: 50%;
-  animation: rotateRing 24s linear infinite;
-}
-
-.avatar-ring::after {
-  content: "";
-  position: absolute;
-  inset: -5px;
-  border: 1px solid rgba(245,34,59,.18);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 
-.avatar {
-  width: 126px;
-  height: 126px;
-  border-radius: 50%;
+.profile-photo {
+  display: block;
   object-fit: cover;
   object-position: center;
-  border: 3px solid #191519;
-  background: #191519;
-  box-shadow: 0 0 28px rgba(245,34,59,.23);
+  opacity: 0;
+  transition: opacity .25s ease;
 }
 
-.avatar-fallback {
-  width: 126px;
-  height: 126px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(145deg, #28151a, #111);
+.profile-photo.loaded {
+  opacity: 1;
+}
+
+.profile-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 35% 25%, #4a202a, transparent 55%),
+    linear-gradient(145deg, #1c1519, #090809);
   color: var(--gold);
-  font: 700 40px "Orbitron", sans-serif;
-  border: 3px solid #191519;
+  font-family: "Orbitron", sans-serif;
+  font-size: 51px;
+  font-weight: 900;
+  letter-spacing: -4px;
+}
+
+.profile-fallback.visible {
+  display: flex;
 }
 
 .verified {
   position: absolute;
+  z-index: 3;
   bottom: 4px;
-  right: 12px;
-  width: 31px;
-  height: 31px;
+  right: 3px;
+  width: 43px;
+  height: 43px;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: #161216;
-  border: 1px solid rgba(217,183,122,.55);
+  border: 1px solid rgba(216,187,123,.7);
+  background: #161114;
   color: var(--gold);
-  box-shadow: 0 5px 15px #000;
+  box-shadow: 0 5px 20px #0008;
 }
 
 .verified svg {
-  width: 16px;
-  height: 16px;
+  width: 23px;
+  height: 23px;
 }
 
 .name {
-  font: 800 clamp(23px, 6vw, 30px) "Orbitron", sans-serif;
-  letter-spacing: 1.3px;
-  line-height: 1.5;
-  color: #fff;
-  text-shadow: 0 0 25px rgba(245,34,59,.17);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 15px;
+  margin: 28px 0 18px;
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(23px, 6.6vw, 38px);
+  font-weight: 900;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
-.name span { color: var(--red-light); }
+.name .first {
+  color: #fff;
+}
 
-.divider {
+.name .middle {
+  color: var(--gold);
+}
+
+.name .last {
+  color: #fa4d6c;
+}
+
+.name-rule {
+  height: 1px;
+  margin: 22px 0 28px;
+  background: linear-gradient(90deg, transparent, rgba(216,187,123,.6), transparent);
+}
+
+.contact-list {
+  display: grid;
+  gap: 15px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 88px;
+  padding: 15px 16px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 25px;
+  background: linear-gradient(120deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+  transition: transform .22s ease, border-color .22s ease, background .22s ease;
+}
+
+.contact-link:active {
+  transform: scale(.985);
+}
+
+.contact-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(216,187,123,.35);
+  background: rgba(255,255,255,.045);
+}
+
+.contact-icon {
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--icon-border, rgba(216,187,123,.25));
+  border-radius: 19px;
+  background: var(--icon-bg, rgba(216,187,123,.08));
+  color: var(--icon-color, var(--gold));
+}
+
+.contact-icon svg {
+  width: 29px;
+  height: 29px;
+}
+
+.contact-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.contact-arrow {
+  color: #777078;
+  font-family: sans-serif;
+  font-size: 23px;
+  direction: ltr;
+}
+
+.phone {
+  --icon-color: #e8c66e;
+  --icon-bg: rgba(216,187,123,.09);
+  --icon-border: rgba(216,187,123,.28);
+}
+
+.telegram {
+  --icon-color: #36b6ec;
+  --icon-bg: rgba(54,182,236,.09);
+  --icon-border: rgba(54,182,236,.25);
+}
+
+.instagram {
+  --icon-color: #f45b91;
+  --icon-bg: rgba(244,91,145,.08);
+  --icon-border: rgba(244,91,145,.25);
+}
+
+.whatsapp {
+  --icon-color: #32d780;
+  --icon-bg: rgba(50,215,128,.08);
+  --icon-border: rgba(50,215,128,.25);
+}
+
+/* MUSIC PLAYER */
+.music-player {
+  margin-top: 28px;
+  padding: 21px 17px 17px;
+  border: 1px solid rgba(216,187,123,.42);
+  border-radius: 23px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(216,187,123,.08), transparent 75%),
+    rgba(216,187,123,.035);
+}
+
+.music-heading {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 22px 0;
-  color: var(--gold);
-  font-size: 9px;
-  letter-spacing: 2px;
+  margin-bottom: 7px;
 }
 
-.divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(217,183,122,.35));
-}
-
-.divider::after { transform: rotate(180deg); }
-
-/* Contact buttons: icons + names only */
-.contact-list {
-  display: grid;
-  gap: 10px;
-}
-
-.contact-btn {
-  --accent: var(--red);
-  position: relative;
-  isolation: isolate;
-  min-height: 66px;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 10px 13px;
-  border: 1px solid rgba(255,255,255,.075);
-  border-radius: 15px;
-  overflow: hidden;
-  background: linear-gradient(110deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
-  transition: transform .25s ease, border-color .25s ease, background .25s ease;
-  text-align: right;
-}
-
-.contact-btn::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
-  transform: translateX(110%);
-  transition: transform .45s ease;
-}
-
-.contact-btn:hover,
-.contact-btn:focus-visible {
-  transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
-  outline: none;
-}
-
-.contact-btn:hover::before,
-.contact-btn:focus-visible::before { transform: translateX(0); }
-
-.contact-btn:active { transform: scale(.985); }
-
-.contact-btn.telegram { --accent: #2ca5e0; }
-.contact-btn.instagram { --accent: #e64a83; }
-.contact-btn.whatsapp { --accent: #27d66f; }
-.contact-btn.phone { --accent: #e7b866; }
-
-.icon-box {
-  width: 43px;
-  height: 43px;
-  flex: 0 0 43px;
+.music-disc {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 12px;
-  color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-  background: color-mix(in srgb, var(--accent) 9%, transparent);
-  transition: box-shadow .25s ease, transform .25s ease;
+  border: 1px solid rgba(216,187,123,.4);
+  border-radius: 50%;
+  color: var(--gold);
+  background: #171114;
 }
 
-.icon-box svg {
-  width: 23px;
-  height: 23px;
-  display: block;
+.music-disc svg {
+  width: 22px;
+  height: 22px;
 }
 
-.contact-btn:hover .icon-box {
-  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 18%, transparent);
-  transform: scale(1.04);
+.music-disc.playing {
+  animation: discPulse 1.4s ease-in-out infinite;
 }
 
-.contact-info {
+@keyframes discPulse {
+  50% { box-shadow: 0 0 20px rgba(237,54,86,.3); }
+}
+
+.music-info {
   flex: 1;
   min-width: 0;
 }
 
-.contact-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: #f6f3f4;
+.music-title {
+  font-size: 14px;
+  font-weight: 800;
 }
 
-.arrow {
-  color: #777076;
-  font-size: 18px;
-  transition: transform .25s ease, color .25s ease;
+.music-subtitle {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 11px;
 }
 
-.contact-btn:hover .arrow {
-  color: var(--accent);
-  transform: translateX(-3px);
+.music-status {
+  color: var(--gold);
+  font-size: 10px;
+  white-space: nowrap;
 }
 
-.music-btn {
-  width: 100%;
+.visualizer {
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  margin-top: 17px;
-  padding: 12px 15px;
-  border: 1px solid rgba(217,183,122,.24);
-  border-radius: 12px;
-  background: rgba(217,183,122,.045);
-  color: var(--gold);
-  cursor: pointer;
-  font-size: 11px;
-  transition: background .2s ease, border-color .2s ease;
+  gap: 4px;
+  margin: 15px 0 13px;
+  padding: 5px;
+  overflow: hidden;
 }
 
-.music-btn:hover {
-  background: rgba(217,183,122,.09);
-  border-color: rgba(217,183,122,.5);
-}
-
-.music-btn svg {
-  width: 17px;
-  height: 17px;
-}
-
-.music-bars {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 15px;
-}
-
-.music-bars i {
-  width: 3px;
+.visualizer span {
+  width: 4px;
   height: 5px;
-  border-radius: 3px;
-  background: var(--gold);
+  min-height: 4px;
+  border-radius: 8px;
+  background: linear-gradient(0deg, var(--red-dark), var(--red), var(--gold));
+  opacity: .72;
+  transition: height .12s ease;
 }
 
-.music-btn.playing .music-bars i {
-  animation: equalize .7s ease-in-out infinite alternate;
+.visualizer.playing span {
+  animation: equalize .72s ease-in-out infinite alternate;
 }
 
-.music-btn.playing .music-bars i:nth-child(2) { animation-delay: -.5s; }
-.music-btn.playing .music-bars i:nth-child(3) { animation-delay: -.2s; }
-.music-btn.playing .music-bars i:nth-child(4) { animation-delay: -.4s; }
+.visualizer.playing span:nth-child(3n) { animation-delay: -.5s; }
+.visualizer.playing span:nth-child(3n + 1) { animation-delay: -.25s; }
+.visualizer.playing span:nth-child(4n) { animation-duration: .48s; }
 
 @keyframes equalize {
-  from { height: 3px; }
-  to { height: 14px; }
+  from { height: 7px; }
+  to { height: var(--bar-height, 32px); }
 }
 
-.card-footer {
-  padding: 15px 20px;
+.music-controls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(255,255,255,.06);
-  background: rgba(0,0,0,.16);
-  color: #746d72;
-  font-size: 9px;
-  direction: ltr;
-  letter-spacing: 1px;
+  gap: 12px;
 }
 
-.footer-mark {
-  color: var(--red-light);
-  font-family: "Orbitron", sans-serif;
-  font-weight: 700;
+.play-button {
+  flex: 0 0 49px;
+  width: 49px;
+  height: 49px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(216,187,123,.55);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #3a2024, #171013);
+  color: var(--gold-light);
+  box-shadow: 0 0 20px rgba(237,54,86,.1);
+  transition: transform .2s ease;
 }
 
-/* OMEGA section */
-.omega-card {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  margin-top: 19px;
-  padding: 23px 19px 19px;
-  border-radius: 22px;
-  border: 1px solid rgba(22,140,255,.28);
+.play-button:active {
+  transform: scale(.93);
+}
+
+.play-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.volume-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.volume-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+  color: #bcb3b6;
+  font-size: 11px;
+}
+
+.volume-value {
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="range"] {
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin: 0;
+  accent-color: var(--red);
+  cursor: pointer;
+}
+
+.music-note {
+  margin: 14px 0 0;
+  color: #8f858a;
+  font-size: 10px;
+  line-height: 1.9;
+}
+
+.music-error {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(237,54,86,.28);
+  border-radius: 12px;
+  color: #ff9bab;
+  background: rgba(237,54,86,.06);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.music-error.visible {
+  display: block;
+}
+
+.footer {
+  margin-top: 32px;
+  padding: 25px 20px;
+  border: 1px solid rgba(22,140,255,.25);
+  border-radius: 24px;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(22,140,255,.13), transparent 60%),
-    linear-gradient(145deg, #0a111c, #07090e 75%);
-  box-shadow: 0 12px 45px rgba(0,0,0,.28);
+    radial-gradient(ellipse at 100% 0%, rgba(22,140,255,.12), transparent 60%),
+    linear-gradient(140deg, #0e1017, #08090d);
   text-align: center;
-  animation: fadeUp .9s .3s both;
 }
 
-.omega-card::before {
-  content: "";
-  position: absolute;
-  inset: auto -30% -100px;
-  height: 150px;
-  z-index: -1;
-  background: rgba(22,140,255,.12);
-  filter: blur(45px);
+.omega-logo {
+  color: #fff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 5px;
 }
 
-.omega-label {
-  color: #a4cfff;
-  font-size: 9px;
-  letter-spacing: 2px;
+.omega-logo span {
+  color: #168cff;
 }
 
 .omega-symbol {
-  margin-top: 9px;
-  font: 400 58px Georgia, serif;
-  line-height: 1.2;
-  color: var(--omega-cyan);
-  text-shadow: 0 0 18px rgba(67,213,255,.45);
+  color: #43d5ff;
+  font-family: "Times New Roman", serif;
 }
 
-.omega-name {
-  margin-top: 1px;
-  color: #fff;
-  font: 800 25px "Orbitron", sans-serif;
-  letter-spacing: 5px;
-  text-shadow: 0 0 18px rgba(22,140,255,.28);
+.omega-caption {
+  margin-top: 8px;
+  color: #b8c4d7;
+  font-size: 12px;
 }
 
-.omega-desc {
-  margin-top: 9px;
-  color: #a9b9cb;
-  font-size: 11px;
-  line-height: 2;
-}
-
-.omega-services {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 14px;
-}
-
-.omega-services span {
-  padding: 6px 10px;
-  border-radius: 20px;
-  border: 1px solid rgba(67,213,255,.18);
-  color: #a7ddff;
-  background: rgba(22,140,255,.055);
-  font-size: 9px;
-}
-
-.omega-link {
-  display: flex;
+.omega-button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  margin-top: 19px;
-  padding: 13px 15px;
-  border-radius: 12px;
-  color: #04101c;
-  background: linear-gradient(110deg, var(--omega-blue), var(--omega-cyan));
-  box-shadow: 0 0 22px rgba(22,140,255,.12);
+  margin-top: 18px;
+  padding: 12px 20px;
+  border: 1px solid rgba(67,213,255,.35);
+  border-radius: 14px;
+  background: rgba(22,140,255,.08);
+  color: #65d9ff;
   font-size: 12px;
-  font-weight: 800;
-  transition: transform .25s ease, box-shadow .25s ease;
+  font-weight: 700;
+  transition: background .2s ease;
 }
 
-.omega-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(67,213,255,.25);
-}
-
-.omega-link svg {
-  width: 17px;
-  height: 17px;
+.omega-button:hover {
+  background: rgba(22,140,255,.16);
 }
 
 .copyright {
-  margin: 22px 0 0;
-  color: #6d676c;
+  margin-top: 24px;
+  color: #69636a;
+  font-size: 10px;
   text-align: center;
-  font-size: 9px;
-  line-height: 2;
 }
 
-.copyright span { color: var(--red-light); }
+@media (max-width: 390px) {
+  .page {
+    width: calc(100% - 20px);
+    padding-top: 22px;
+  }
 
-@keyframes cardEnter {
-  from { opacity: 0; transform: translateY(25px) scale(.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
+  .main-card {
+    padding: 30px 16px 22px;
+    border-radius: 28px 28px 18px 18px;
+  }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+  .profile-wrap {
+    width: 178px;
+    height: 178px;
+    margin-top: 37px;
+  }
 
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+  .name {
+    gap: 6px 10px;
+    font-size: clamp(20px, 6.4vw, 27px);
+  }
 
-@keyframes ringPulse {
-  0%, 100% { box-shadow: 0 0 14px rgba(245,34,59,.14); }
-  50% { box-shadow: 0 0 25px rgba(245,34,59,.32); }
-}
+  .contact-link {
+    min-height: 78px;
+    padding: 12px;
+    border-radius: 21px;
+  }
 
-@keyframes rotateRing {
-  to { transform: rotate(360deg); }
-}
+  .contact-icon {
+    flex-basis: 52px;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+  }
 
-@media (min-width: 600px) {
-  .page { margin-top: 20px; }
-  .card-content { padding: 32px 28px 25px; }
+  .contact-label {
+    font-size: 14px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -627,361 +704,522 @@ button { font: inherit; }
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
   }
 }
 </style>
 </head>
 
 <body>
-<div class="scene" aria-hidden="true">
-  <div class="ambient one"></div>
-  <div class="ambient two"></div>
-</div>
-
-<canvas id="particles" aria-hidden="true"></canvas>
-
-<header class="topbar">
-  <div class="top-brand">PERSONAL ID</div>
-  <div class="top-status">
-    <span class="status-dot"></span>
-    <span>DIGITAL PROFILE</span>
-  </div>
-</header>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+<canvas class="particles" id="particles" aria-hidden="true"></canvas>
 
 <main class="page">
-  <section class="profile-card" aria-label="کارت دیجیتال امیرحسین شاد">
-    <div class="card-top-line"></div>
 
-    <div class="card-content">
-      <div class="eyebrow">THE PERSONAL BRAND</div>
+  <header class="topbar">
+    <div class="live">
+      <span>DIGITAL PROFILE</span>
+      <span class="live-dot"></span>
+    </div>
+    <div class="top-title">PERSONAL ID</div>
+  </header>
 
-      <div class="avatar-wrap">
-        <div class="avatar-ring"></div>
+  <section class="main-card">
 
-        <img class="avatar"
-             src="profile.jpg"
-             alt="تصویر پروفایل امیرحسین شاد"
-             onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+    <div class="eyebrow">THE PERSONAL BRAND</div>
 
-        <div class="avatar-fallback" hidden>AS</div>
+    <div class="profile-wrap">
+      <div class="profile-halo"></div>
+      <div class="profile-halo halo-two"></div>
 
-        <div class="verified" aria-label="نشان پروفایل">
+      <div class="profile-frame">
+        <img
+          id="profilePhoto"
+          class="profile-photo"
+          src="profile.jpg"
+          alt="تصویر پروفایل امیر حسین شاد"
+          fetchpriority="high"
+        >
+
+        <div
+          id="profileFallback"
+          class="profile-fallback"
+          aria-label="AMIR HOSIN SHAD"
+          aria-hidden="true"
+        >AS</div>
+      </div>
+
+      <div class="verified" aria-label="Personal identity">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.8 14.5 5l3.3-.1.9 3.1 2.6 2-1.1 3.1.5 3.2-3 1.3-1.5 2.9-3.2-.7-3.1.7-1.5-2.9-3-1.3.5-3.2-1.1-3.1 2.6-2 .9-3.1 3.3.1z"/>
+          <path d="m8.5 12.2 2.2 2.2 4.8-5"/>
+        </svg>
+      </div>
+    </div>
+
+    <h1 class="name">
+      <span class="first">AMIR</span>
+      <span class="middle">HOSIN</span>
+      <span class="last">SHAD</span>
+    </h1>
+
+    <div class="name-rule"></div>
+
+    <nav class="contact-list" aria-label="راه‌های ارتباطی">
+
+      <a class="contact-link phone" href="tel:+989384704646">
+        <span class="contact-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3 14.7 5l3.4-.1.9 3.2 2.5 2-1.1 3.2.6 3.3-3 1.6-1.5 3.1-3.4-.7-3.1 1.4-2.4-2.5-3.3-.5-.4-3.4L1.8 13l1.4-3.1-.5-3.4 3.2-1.3L8 2.5z"/>
-            <path d="m8 12 2.5 2.5L16 9"/>
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/>
           </svg>
+        </span>
+        <span class="contact-label">شماره تماس</span>
+        <span class="contact-arrow">›</span>
+      </a>
+
+      <a class="contact-link telegram"
+         href="https://t.me/Amirm_shad"
+         target="_blank" rel="noopener noreferrer">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M21.7 3.3a1.5 1.5 0 0 0-1.6-.2L2.5 9.9c-1.2.5-1.2 1.2-.2 1.6l4.5 1.4 1.7 5.4c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.5-2.4 4.6 3.4c.8.5 1.4.2 1.6-.8l3-14.2c.2-.8-.1-1.2-.7-1.3ZM8.4 12.6l9.7-6.1c.5-.3.9-.1.5.2l-8 7.3-.3 3.3-1.9-4.7Z"/>
+          </svg>
+        </span>
+        <span class="contact-label">تلگرام</span>
+        <span class="contact-arrow">›</span>
+      </a>
+
+      <a class="contact-link instagram"
+         href="https://instagram.com/amirmshad"
+         target="_blank" rel="noopener noreferrer">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M17.5 6.5h.01"/>
+          </svg>
+        </span>
+        <span class="contact-label">اینستاگرام</span>
+        <span class="contact-arrow">›</span>
+      </a>
+
+      <a class="contact-link whatsapp"
+         href="https://wa.me/989384704646"
+         target="_blank" rel="noopener noreferrer">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.5 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-4.8A8.4 8.4 0 1 1 20.5 11.5Z"/>
+            <path d="M8.7 7.8c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.8c-.2.2-.2.4 0 .6.4.7 1.2 1.5 2.1 1.9.2.1.4.1.6-.1l.8-1c.2-.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.3-.9 1.8-.6.5-1.4.7-2.4.4-1-.3-2.3-.8-3.7-2.1-1.1-1-1.9-2.2-2.1-3.1-.3-.9 0-1.9.9-2.7Z"/>
+          </svg>
+        </span>
+        <span class="contact-label">واتساپ</span>
+        <span class="contact-arrow">›</span>
+      </a>
+
+    </nav>
+
+    <section class="music-player" aria-label="پخش موسیقی">
+
+      <div class="music-heading">
+        <div class="music-disc" id="musicDisc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 3v2M21 12h-2"/>
+          </svg>
+        </div>
+
+        <div class="music-info">
+          <div class="music-title">THE BOSS ENTRANCE</div>
+          <div class="music-subtitle">Cinematic • Dark • Epic</div>
+        </div>
+
+        <div class="music-status" id="musicStatus">READY</div>
+      </div>
+
+      <div class="visualizer" id="visualizer" aria-hidden="true"></div>
+
+      <div class="music-controls">
+        <button class="play-button" id="playButton"
+                type="button" aria-label="پخش موسیقی">
+          <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5.8c0-.8.9-1.3 1.6-.9l9.1 5.3a1 1 0 0 1 0 1.7l-9.1 5.3c-.7.4-1.6-.1-1.6-.9V5.8Z"/>
+          </svg>
+        </button>
+
+        <div class="volume-area">
+          <div class="volume-label">
+            <label for="volumeControl">کنترل صدا</label>
+            <span class="volume-value" id="volumeValue">70%</span>
+          </div>
+          <input id="volumeControl" type="range"
+                 min="0" max="100" value="70"
+                 aria-label="میزان صدای موسیقی">
         </div>
       </div>
 
-      <h1 class="name">AMIR HOSIN <span>SHAD</span></h1>
+      <p class="music-note">
+        برای شروع موسیقی روی دکمه پخش بزن؛ صدا به‌صورت خودکار اجرا نمی‌شود.
+      </p>
 
-      <div class="divider">GET IN TOUCH</div>
+      <div class="music-error" id="musicError" role="status"></div>
 
-      <nav class="contact-list" aria-label="راه‌های ارتباطی">
+      <!-- فایل صوتی واقعی از طریق آدرس مستقیم بارگذاری می‌شود -->
+      <audio id="bossAudio" preload="none" loop playsinline></audio>
 
-        <!-- Phone -->
-        <a class="contact-btn phone" href="tel:+989384704646" aria-label="شماره تماس">
-          <span class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2.1Z"/>
-            </svg>
-          </span>
-          <span class="contact-info">
-            <span class="contact-title">شماره تماس</span>
-          </span>
-          <span class="arrow" aria-hidden="true">‹</span>
-        </a>
+    </section>
 
-        <!-- Telegram -->
-        <a class="contact-btn telegram" href="https://t.me/Amirm_shad"
-           target="_blank" rel="noopener noreferrer" aria-label="تلگرام">
-          <span class="icon-box">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21.8 3.4a1.7 1.7 0 0 0-1.8-.2L2.6 10.1c-1.2.5-1.1 2.2.1 2.6l4.4 1.4 1.7 5.2c.4 1.1 1.8 1.3 2.4.3l2.5-3.4 4.4 3.3c.9.7 2.2.2 2.4-.9l2.2-13.4a1.8 1.8 0 0 0-.9-1.8ZM9 13.3l8.7-6.1-6.9 7.6-.3 3.2L9 13.3Z"/>
-            </svg>
-          </span>
-          <span class="contact-info">
-            <span class="contact-title">تلگرام</span>
-          </span>
-          <span class="arrow" aria-hidden="true">‹</span>
-        </a>
-
-        <!-- Instagram -->
-        <a class="contact-btn instagram" href="https://instagram.com/amirmshad"
-           target="_blank" rel="noopener noreferrer" aria-label="اینستاگرام">
-          <span class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <path d="M17.5 6.5h.01"/>
-            </svg>
-          </span>
-          <span class="contact-info">
-            <span class="contact-title">اینستاگرام</span>
-          </span>
-          <span class="arrow" aria-hidden="true">‹</span>
-        </a>
-
-        <!-- WhatsApp -->
-        <a class="contact-btn whatsapp" href="https://wa.me/989384704646"
-           target="_blank" rel="noopener noreferrer" aria-label="واتساپ">
-          <span class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20l.9-4.7a8.5 8.5 0 1 1 16.6-3.6Z"/>
-              <path d="M8.5 8.5c.4-.7.8-.7 1.1-.7h.4c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.8c-.2.2-.2.4 0 .6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.5 0 .4-.2 1.2-.7 1.6-.5.5-1.2.8-2 .7-1.1-.1-2.5-.7-4-2-1.2-1-2.2-2.5-2.5-3.5-.3-.9 0-1.9.7-2.5Z"/>
-            </svg>
-          </span>
-          <span class="contact-info">
-            <span class="contact-title">واتساپ</span>
-          </span>
-          <span class="arrow" aria-hidden="true">‹</span>
-        </a>
-      </nav>
-
-      <button class="music-btn" id="musicToggle" type="button" aria-pressed="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
-             aria-hidden="true">
-          <path d="M9 18V5l12-2v13"/>
-          <circle cx="6" cy="18" r="3"/>
-          <circle cx="18" cy="16" r="3"/>
-        </svg>
-        <span id="musicText">فعال کردن موسیقی پس‌زمینه</span>
-        <span class="music-bars" aria-hidden="true">
-          <i></i><i></i><i></i><i></i>
-        </span>
-      </button>
-    </div>
-
-    <div class="card-footer">
-      <span>PERSONAL DIGITAL CARD</span>
-      <span class="footer-mark">A.S. / 01</span>
-    </div>
   </section>
 
-  <!-- OMEGA -->
-  <section class="omega-card" aria-label="شرکت OMEGA">
-    <div class="omega-label">POWERED BY</div>
-    <div class="omega-symbol" aria-hidden="true">Ω</div>
-    <div class="omega-name">OMEGA</div>
+  <footer class="footer">
+    <div class="omega-logo"><span class="omega-symbol">Ω</span> OMEGA</div>
+    <div class="omega-caption">Digital Studio • Web Design & Content</div>
 
-    <p class="omega-desc">
-      طراحی سایت و تولید محتوا<br>
-      جایی که ایده‌ها به تجربه‌های دیجیتال تبدیل می‌شوند.
-    </p>
-
-    <div class="omega-services">
-      <span>طراحی وب‌سایت</span>
-      <span>تولید محتوا</span>
-      <span>هویت دیجیتال</span>
-    </div>
-
-    <a class="omega-link" href="https://omegawebb.github.io/OMEGA/"
+    <a class="omega-button"
+       href="https://omegawebb.github.io/OMEGA/"
        target="_blank" rel="noopener noreferrer">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>
-      </svg>
       مشاهده وب‌سایت OMEGA
+      <span>↗</span>
     </a>
-  </section>
-
-  <footer class="copyright">
-    DESIGNED WITH <span>♥</span> · AMIR HOSIN SHAD<br>
-    © <span id="year"></span> ALL RIGHTS RESERVED
   </footer>
+
+  <div class="copyright">
+    PERSONAL IDENTITY © <span id="year"></span> — ALL RIGHTS RESERVED
+  </div>
+
 </main>
 
 <script>
+/* =========================================
+   1. PROFILE IMAGE FIX
+   The fallback is shown only when the image
+   fails to load. Both share the same frame.
+========================================= */
 (() => {
-  "use strict";
+  const photo = document.getElementById("profilePhoto");
+  const fallback = document.getElementById("profileFallback");
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  function showFallback() {
+    photo.classList.remove("loaded");
+    photo.hidden = true;
+    fallback.classList.add("visible");
+    fallback.setAttribute("aria-hidden", "false");
+  }
 
-  // Lightweight floating red particles
+  function showPhoto() {
+    fallback.classList.remove("visible");
+    fallback.setAttribute("aria-hidden", "true");
+    photo.hidden = false;
+    photo.classList.add("loaded");
+  }
+
+  photo.addEventListener("load", () => {
+    if (photo.naturalWidth > 0) {
+      showPhoto();
+    } else {
+      showFallback();
+    }
+  });
+
+  photo.addEventListener("error", showFallback);
+
+  // Handle an image that loaded before listeners were added.
+  if (photo.complete) {
+    if (photo.naturalWidth > 0) {
+      showPhoto();
+    } else {
+      showFallback();
+    }
+  }
+})();
+
+/* =========================================
+   2. ONLINE MUSIC
+   Replace the placeholder URL below with
+   a direct, playable MP3 or WAV URL.
+========================================= */
+const MUSIC_URL = "PASTE_DIRECT_AUDIO_URL_HERE";
+
+const audio = document.getElementById("bossAudio");
+const playButton = document.getElementById("playButton");
+const playIcon = document.getElementById("playIcon");
+const volumeControl = document.getElementById("volumeControl");
+const volumeValue = document.getElementById("volumeValue");
+const musicStatus = document.getElementById("musicStatus");
+const musicDisc = document.getElementById("musicDisc");
+const visualizer = document.getElementById("visualizer");
+const musicError = document.getElementById("musicError");
+
+let isPlaying = false;
+let audioContext = null;
+let analyser = null;
+let sourceNode = null;
+let animationFrame = null;
+let frequencyData = null;
+let bars = [];
+
+// Create decorative visualizer bars.
+for (let i = 0; i < 35; i++) {
+  const bar = document.createElement("span");
+  bar.style.setProperty(
+    "--bar-height",
+    (10 + Math.random() * 42) + "px"
+  );
+  visualizer.appendChild(bar);
+  bars.push(bar);
+}
+
+function showMusicError(message) {
+  musicError.textContent = message;
+  musicError.classList.add("visible");
+}
+
+function clearMusicError() {
+  musicError.textContent = "";
+  musicError.classList.remove("visible");
+}
+
+function updatePlayState(playing) {
+  isPlaying = playing;
+
+  visualizer.classList.toggle("playing", playing);
+  musicDisc.classList.toggle("playing", playing);
+
+  playButton.setAttribute(
+    "aria-label",
+    playing ? "توقف موسیقی" : "پخش موسیقی"
+  );
+
+  if (playing) {
+    playIcon.innerHTML =
+      '<path d="M7 5h4v14H7zM15 5h4v14h-4z"/>';
+    musicStatus.textContent = "PLAYING";
+    startVisualizer();
+  } else {
+    playIcon.innerHTML =
+      '<path d="M8 5.8c0-.8.9-1.3 1.6-.9l9.1 5.3a1 1 0 0 1 0 1.7l-9.1 5.3c-.7.4-1.6-.1-1.6-.9V5.8Z"/>';
+    musicStatus.textContent = "PAUSED";
+    stopVisualizer();
+  }
+}
+
+async function setupAudioVisualizer() {
+  if (audioContext) {
+    if (audioContext.state === "suspended") {
+      await audioContext.resume();
+    }
+    return;
+  }
+
+  const AudioContextClass =
+    window.AudioContext || window.webkitAudioContext;
+
+  // The CSS visualizer still works if Web Audio is unavailable.
+  if (!AudioContextClass) return;
+
+  try {
+    audioContext = new AudioContextClass();
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = 128;
+    analyser.smoothingTimeConstant = 0.82;
+
+    sourceNode = audioContext.createMediaElementSource(audio);
+    sourceNode.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+    if (audioContext.state === "suspended") {
+      await audioContext.resume();
+    }
+  } catch (error) {
+    console.warn("Visualizer unavailable:", error);
+    analyser = null;
+  }
+}
+
+function startVisualizer() {
+  stopVisualizer();
+
+  function draw() {
+    if (!isPlaying) return;
+
+    if (analyser && frequencyData) {
+      analyser.getByteFrequencyData(frequencyData);
+
+      bars.forEach((bar, index) => {
+        const dataIndex = Math.floor(
+          index * frequencyData.length / bars.length
+        );
+        const magnitude = frequencyData[dataIndex] / 255;
+        const height = 5 + magnitude * 48;
+        bar.style.height = height + "px";
+      });
+    } else {
+      // Animated fallback when Web Audio is unavailable.
+      bars.forEach((bar) => {
+        bar.style.height = (6 + Math.random() * 38) + "px";
+      });
+    }
+
+    animationFrame = requestAnimationFrame(draw);
+  }
+
+  draw();
+}
+
+function stopVisualizer() {
+  if (animationFrame !== null) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+  }
+
+  bars.forEach(bar => {
+    bar.style.height = "5px";
+  });
+}
+
+async function toggleMusic() {
+  clearMusicError();
+
+  if (isPlaying) {
+    audio.pause();
+    updatePlayState(false);
+    return;
+  }
+
+  if (
+    !MUSIC_URL ||
+    MUSIC_URL === "PASTE_DIRECT_AUDIO_URL_HERE"
+  ) {
+    showMusicError(
+      "هنوز لینک موسیقی تنظیم نشده است. مقدار MUSIC_URL را در کد با لینک مستقیم فایل MP3 یا WAV جایگزین کن."
+    );
+    return;
+  }
+
+  if (!audio.src || audio.dataset.source !== MUSIC_URL) {
+    audio.src = MUSIC_URL;
+    audio.dataset.source = MUSIC_URL;
+    audio.load();
+  }
+
+  try {
+    await setupAudioVisualizer();
+    await audio.play();
+    updatePlayState(true);
+  } catch (error) {
+    updatePlayState(false);
+    showMusicError(
+      "موسیقی پخش نشد. لینک را بررسی کن؛ باید مستقیم، در دسترس و قابل پخش باشد و سرور آن اجازه دسترسی به فایل صوتی را بدهد."
+    );
+    console.error("Audio playback failed:", error);
+  }
+}
+
+playButton.addEventListener("click", toggleMusic);
+
+audio.addEventListener("play", () => updatePlayState(true));
+audio.addEventListener("pause", () => {
+  if (!audio.ended) updatePlayState(false);
+});
+audio.addEventListener("ended", () => updatePlayState(false));
+audio.addEventListener("error", () => {
+  if (audio.src) {
+    updatePlayState(false);
+    showMusicError(
+      "فایل صوتی قابل بارگذاری نیست. لینک مستقیم MP3/WAV و دسترسی سرور را بررسی کن."
+    );
+  }
+});
+
+volumeControl.addEventListener("input", () => {
+  const volume = Number(volumeControl.value) / 100;
+  audio.volume = volume;
+  volumeValue.textContent = volumeControl.value + "%";
+});
+
+audio.volume = Number(volumeControl.value) / 100;
+
+/* =========================================
+   3. SUBTLE BACKGROUND PARTICLES
+========================================= */
+(() => {
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!ctx) return;
 
   let width = 0;
   let height = 0;
   let particles = [];
-  let frameId = 0;
-  let lastFrame = 0;
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-  function resizeCanvas() {
+  function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
     width = window.innerWidth;
     height = window.innerHeight;
+
     canvas.width = Math.floor(width * dpr);
     canvas.height = Math.floor(height * dpr);
     canvas.style.width = width + "px";
     canvas.style.height = height + "px";
+
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const count = Math.min(38, Math.max(16, Math.floor(width / 12)));
+    const count = Math.min(
+      45,
+      Math.max(15, Math.floor(width / 10))
+    );
+
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: Math.random() * 1.8 + .4,
-      vx: (Math.random() - .5) * .18,
-      vy: -(Math.random() * .25 + .06),
-      alpha: Math.random() * .35 + .08
+      r: Math.random() * 1.5 + .4,
+      speed: Math.random() * .22 + .06,
+      alpha: Math.random() * .5 + .12
     }));
 
-    if (reducedMotion) drawStatic();
+    draw();
   }
 
-  function drawStatic() {
-    ctx.clearRect(0, 0, width, height);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,65,82,${p.alpha})`;
-      ctx.fill();
-    });
-  }
-
-  function animate(time) {
-    if (document.hidden) {
-      frameId = 0;
-      return;
-    }
-
-    if (time - lastFrame < 40) {
-      frameId = requestAnimationFrame(animate);
-      return;
-    }
-
-    lastFrame = time;
+  function draw() {
     ctx.clearRect(0, 0, width, height);
 
     particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.y < -5) {
-        p.y = height + 5;
-        p.x = Math.random() * width;
-      }
-      if (p.x < -5) p.x = width + 5;
-      if (p.x > width + 5) p.x = -5;
-
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,65,82,${p.alpha})`;
+      ctx.fillStyle = `rgba(237,54,86,${p.alpha})`;
       ctx.fill();
+
+      if (!reduceMotion) {
+        p.y -= p.speed;
+        if (p.y < -3) {
+          p.y = height + 3;
+          p.x = Math.random() * width;
+        }
+      }
     });
 
-    frameId = requestAnimationFrame(animate);
-  }
-
-  function startParticles() {
-    if (reducedMotion || frameId) return;
-    frameId = requestAnimationFrame(animate);
-  }
-
-  function stopParticles() {
-    if (frameId) cancelAnimationFrame(frameId);
-    frameId = 0;
-  }
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) stopParticles();
-    else startParticles();
-  });
-
-  window.addEventListener("resize", resizeCanvas, { passive: true });
-  resizeCanvas();
-  startParticles();
-
-  // Optional ambient music: starts only after the button is pressed.
-  const musicButton = document.getElementById("musicToggle");
-  const musicText = document.getElementById("musicText");
-  let audioContext = null;
-  let masterGain = null;
-  let playing = false;
-
-  async function startMusic() {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-
-    if (!AudioContextClass) {
-      playing = false;
-      musicButton.classList.remove("playing");
-      musicButton.setAttribute("aria-pressed", "false");
-      musicText.textContent = "موسیقی در این مرورگر پشتیبانی نمی‌شود";
-      return;
-    }
-
-    try {
-      if (!audioContext) {
-        audioContext = new AudioContextClass();
-        masterGain = audioContext.createGain();
-        masterGain.gain.value = 0.0001;
-        masterGain.connect(audioContext.destination);
-
-        [110, 164.81, 220].forEach((frequency, index) => {
-          const oscillator = audioContext.createOscillator();
-          const gain = audioContext.createGain();
-
-          oscillator.type = index === 1 ? "sine" : "triangle";
-          oscillator.frequency.value = frequency;
-          gain.gain.value = index === 0 ? 0.16 : 0.075;
-          oscillator.connect(gain);
-          gain.connect(masterGain);
-          oscillator.start();
-        });
-      }
-
-      await audioContext.resume();
-
-      if (playing) {
-        masterGain.gain.cancelScheduledValues(audioContext.currentTime);
-        masterGain.gain.setTargetAtTime(0.11, audioContext.currentTime, 0.8);
-      }
-    } catch (error) {
-      playing = false;
-      musicButton.classList.remove("playing");
-      musicButton.setAttribute("aria-pressed", "false");
-      musicText.textContent = "موسیقی در دسترس نیست";
+    if (!reduceMotion) {
+      requestAnimationFrame(draw);
     }
   }
 
-  function stopMusic() {
-    if (!audioContext || !masterGain) return;
-    masterGain.gain.cancelScheduledValues(audioContext.currentTime);
-    masterGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.15);
-  }
-
-  musicButton.addEventListener("click", () => {
-    playing = !playing;
-
-    if (playing) {
-      musicButton.classList.add("playing");
-      musicButton.setAttribute("aria-pressed", "true");
-      musicText.textContent = "خاموش کردن موسیقی پس‌زمینه";
-      startMusic();
-    } else {
-      musicButton.classList.remove("playing");
-      musicButton.setAttribute("aria-pressed", "false");
-      musicText.textContent = "فعال کردن موسیقی پس‌زمینه";
-      stopMusic();
-    }
-  });
-
-  window.addEventListener("pagehide", () => {
-    stopParticles();
-    if (audioContext && audioContext.state !== "closed") {
-      audioContext.close();
-    }
-  });
+  window.addEventListener("resize", resize, { passive: true });
+  resize();
 })();
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
 </script>
 </body>
-</html>
+  </html>
