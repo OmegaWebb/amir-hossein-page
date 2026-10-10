@@ -1,1551 +1,886 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030303">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<title>AMIR HOSIN SHAD</title>
+<meta name="description" content="Amir Hosin Shad — Private Digital Card">
 
-<title>سجاد GOL | Digital Card</title>
-
-
-<!-- =========================
-     GOOGLE FONTS
-========================= -->
-
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Lalezar&family=Vazirmatn:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet">
-
-
-<!-- =========================
-     FONT AWESOME
-========================= -->
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ================= RESET ================= */
 
-/* ==================================================
-   COLORS
-================================================== */
-
-:root{
-
-    --black:#080808;
-
-    --black-soft:#101010;
-
-    --card:#141414;
-
-    --card-hover:#1a1a1a;
-
-    --cream:#f4ecdf;
-
-    --cream-soft:#d8cbbb;
-
-    --gold:#d59a55;
-
-    --orange:#c97832;
-
-    --brown:#805c40;
-
-    --gray:#89827a;
-
-    --border:rgba(244,236,223,.13);
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-/* ==================================================
-   RESET
-================================================== */
-
-*{
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
+:root {
+    --black: #030303;
+    --gold: #d4af37;
+    --gold-light: #fff0a0;
+    --red: #700000;
+    --white: #f5f5f5;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
-/* ==================================================
-   BODY
-================================================== */
-
-body{
-
-    min-height:100vh;
-
+body {
+    min-height: 100vh;
     background:
-
-        radial-gradient(
-            circle at 50% -5%,
-            rgba(213,154,85,.16),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            circle at 0% 100%,
-            rgba(128,92,64,.13),
-            transparent 35%
-        ),
-
-        #080808;
-
-    color:var(--cream);
-
-    font-family:"Vazirmatn",sans-serif;
-
-    padding:25px 15px 40px;
-
+        radial-gradient(circle at 50% 5%, rgba(120,0,0,.22), transparent 32%),
+        radial-gradient(circle at 10% 90%, rgba(212,175,55,.07), transparent 25%),
+        var(--black);
+    color: white;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px;
+    overflow-x: hidden;
 }
 
+/* ================= BACKGROUND ================= */
 
-/* ==================================================
-   MAIN CONTAINER
-================================================== */
-
-.container{
-
-    width:100%;
-
-    max-width:440px;
-
-    margin:auto;
-
+.background {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
 }
 
-
-/* ==================================================
-   TOP DECORATION
-================================================== */
-
-.top-decoration{
-
-    text-align:center;
-
-    margin-bottom:24px;
-
+.red-light {
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    top: -230px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #700000;
+    filter: blur(170px);
+    opacity: .16;
+    animation: redLight 7s ease-in-out infinite alternate;
 }
 
-.top-decoration .flower{
-
-    color:var(--gold);
-
-    font-size:20px;
-
+.gold-light {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    right: -150px;
+    bottom: -130px;
+    background: var(--gold);
+    filter: blur(170px);
+    opacity: .05;
+    animation: goldLight 8s ease-in-out infinite alternate;
 }
 
-.top-decoration .line{
-
-    display:inline-block;
-
-    width:45px;
-
-    height:1px;
-
-    background:var(--gold);
-
-    vertical-align:middle;
-
-    margin:0 8px;
-
-    opacity:.7;
-
+@keyframes redLight {
+    from {
+        transform: translateX(-50%) scale(.8);
+        opacity: .09;
+    }
+    to {
+        transform: translateX(-50%) scale(1.2);
+        opacity: .23;
+    }
 }
 
-
-/* ==================================================
-   PROFILE
-================================================== */
-
-.profile{
-
-    text-align:center;
-
+@keyframes goldLight {
+    from { transform: translate(0,0); }
+    to { transform: translate(-130px,-100px); }
 }
 
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 9px var(--gold);
+    opacity: .3;
+    animation: particleMove linear infinite;
+}
 
-/* ==================================================
-   LOGO
-================================================== */
+.p1 { left: 8%; top: 20%; animation-duration: 9s; }
+.p2 { left: 22%; top: 70%; animation-duration: 13s; }
+.p3 { left: 45%; top: 25%; animation-duration: 11s; }
+.p4 { left: 70%; top: 78%; animation-duration: 15s; }
+.p5 { left: 91%; top: 25%; animation-duration: 10s; }
+.p6 { left: 58%; top: 90%; animation-duration: 12s; }
+.p7 { left: 14%; top: 45%; animation-duration: 14s; }
+.p8 { left: 83%; top: 53%; animation-duration: 8s; }
 
-.logo-frame{
+@keyframes particleMove {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    40% { opacity: .55; }
+    100% {
+        transform: translateY(-120px);
+        opacity: 0;
+    }
+}
 
-    width:125px;
+/* ================= MAIN CARD ================= */
 
-    height:125px;
-
-    margin:auto;
-
-    padding:5px;
-
-    border-radius:50%;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            var(--gold),
-            var(--cream),
-            var(--brown)
-        );
-
+.card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 430px;
+    padding: 34px 24px 20px;
+    border-radius: 30px;
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.065),
+        rgba(255,255,255,.012)
+    );
+    border: 1px solid rgba(212,175,55,.25);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     box-shadow:
-
-        0 0 0 1px rgba(255,255,255,.05),
-
-        0 18px 50px rgba(0,0,0,.55);
-
+        0 40px 100px rgba(0,0,0,.85),
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 0 60px rgba(100,0,0,.08);
+    overflow: hidden;
+    animation: cardEnter 1.1s cubic-bezier(.16,1,.3,1) forwards;
+    opacity: 0;
+    transform: translateY(30px) scale(.96);
 }
 
-
-.logo{
-
-    width:100%;
-
-    height:100%;
-
-    border-radius:50%;
-
-    overflow:hidden;
-
-    background:#f4ecdf;
-
+@keyframes cardEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-
-.logo img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+        120deg,
+        transparent 20%,
+        var(--gold),
+        var(--red),
+        transparent 80%
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderRotate 6s linear infinite;
+    pointer-events: none;
 }
 
-
-/* ==================================================
-   BRAND NAME
-================================================== */
-
-.brand-name{
-
-    margin-top:15px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    direction:rtl;
-
-    gap:8px;
-
+@keyframes borderRotate {
+    to { filter: hue-rotate(25deg); }
 }
 
-
-/* Persian */
-
-.brand-persian{
-
-    font-family:"Lalezar",sans-serif;
-
-    font-size:31px;
-
-    line-height:1;
-
-    color:var(--cream);
-
-    letter-spacing:-1px;
-
+.top-line {
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        var(--gold-light),
+        var(--gold),
+        transparent
+    );
+    box-shadow: 0 0 14px rgba(212,175,55,.7);
+    animation: linePulse 3s ease-in-out infinite;
 }
 
-
-/* English */
-
-.brand-english{
-
-    font-family:"Anton",sans-serif;
-
-    font-size:31px;
-
-    line-height:1;
-
-    letter-spacing:1px;
-
-    color:var(--cream);
-
+@keyframes linePulse {
+    0%,100% { opacity: .45; }
+    50% { opacity: 1; }
 }
 
+/* ================= PROFILE ================= */
 
-/* Instagram ID */
-
-.username{
-
-    direction:ltr;
-
-    margin-top:8px;
-
-    color:var(--gold);
-
-    font-family:Arial,sans-serif;
-
-    font-size:13px;
-
-    letter-spacing:.5px;
-
+.profile {
+    text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
-
-/* ==================================================
-   DESCRIPTION
-================================================== */
-
-.description{
-
-    margin-top:17px;
-
-    padding:15px 18px;
-
-    border-radius:18px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(244,236,223,.055),
-            rgba(213,154,85,.035)
-        );
-
-    border:1px solid var(--border);
-
-    color:var(--cream-soft);
-
-    font-size:12px;
-
-    line-height:2;
-
+.avatar-wrapper {
+    position: relative;
+    width: 125px;
+    height: 125px;
+    margin: 0 auto 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.description .title{
-
-    color:var(--cream);
-
-    font-weight:600;
-
-    font-size:14px;
-
-
+.avatar-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        var(--gold),
+        transparent,
+        #800000,
+        transparent
+    );
+    animation: rotateRing 6s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(212,175,55,.3));
 }
 
-
-.description .flower{
-
-    color:var(--gold);
-
-    padding:0 3px;
-
+@keyframes rotateRing {
+    to { transform: rotate(360deg); }
 }
 
-
-/* ==================================================
-   LINKS
-================================================== */
-
-.links{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:11px;
-
-    margin-top:22px;
-
+.avatar-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,.35);
 }
 
+.avatar {
+    position: relative;
+    z-index: 2;
+    width: 115px;
+    height: 115px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #050505;
+    background: #111;
+    box-shadow:
+        0 0 0 2px rgba(212,175,55,.3),
+        0 0 35px rgba(120,0,0,.3);
+}
 
-/* ==================================================
-   LINK CARD
-================================================== */
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.07);
+    color: #999;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
 
-.link{
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #b30000;
+    box-shadow: 0 0 8px #b30000;
+    animation: statusPulse 2s infinite;
+}
 
-    min-height:70px;
+@keyframes statusPulse {
+    50% { opacity: .3; }
+}
 
-    width:100%;
+.name {
+    font-family: "Cinzel", serif;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-shadow: 0 0 25px rgba(255,255,255,.08);
+    margin-bottom: 8px;
+}
 
-    display:flex;
+.subtitle {
+    color: #a88936;
+    font-size: 9px;
+    letter-spacing: 5px;
+    font-weight: 600;
+}
 
-    align-items:center;
+/* ================= ORNAMENT ================= */
 
-    text-decoration:none;
+.ornament {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 27px 0;
+}
 
-    color:var(--cream);
+.ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212,175,55,.35)
+    );
+}
 
-    padding:10px 12px;
+.ornament-line:last-child {
+    background: linear-gradient(
+        90deg,
+        rgba(212,175,55,.35),
+        transparent
+    );
+}
 
-    border-radius:18px;
+.ornament-symbol {
+    color: var(--gold);
+    font-size: 11px;
+    text-shadow: 0 0 10px rgba(212,175,55,.5);
+}
 
-    background:
+/* ================= SOCIAL LINKS ================= */
 
-        linear-gradient(
-            110deg,
-            rgba(244,236,223,.065),
-            rgba(255,255,255,.018)
-        );
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
 
-    border:1px solid var(--border);
-
+.link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 67px;
+    padding: 9px 13px;
+    text-decoration: none;
+    color: white;
+    border-radius: 17px;
+    background: linear-gradient(
+        110deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.015)
+    );
+    border: 1px solid rgba(255,255,255,.065);
+    overflow: hidden;
     transition:
-
-        transform .25s ease,
-
-        background .25s ease,
-
-        border-color .25s ease;
-
+        transform .35s cubic-bezier(.16,1,.3,1),
+        border-color .35s,
+        box-shadow .35s;
 }
 
-
-.link:hover{
-
-    transform:translateY(-3px);
-
-    background:
-
-        linear-gradient(
-            110deg,
-            rgba(213,154,85,.10),
-            rgba(255,255,255,.025)
-        );
-
-    border-color:
-
-        rgba(213,154,85,.3);
-
+.link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.07),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: .7s;
+    pointer-events: none;
 }
 
-
-/* ==================================================
-   ICON BOX
-================================================== */
-
-.icon{
-
-    width:48px;
-
-    height:48px;
-
-    flex-shrink:0;
-
-    border-radius:14px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:#0c0c0c;
-
-    border:1px solid rgba(244,236,223,.09);
-
-    font-size:21px;
-
+.link:hover::before {
+    left: 140%;
 }
 
-
-/* ==================================================
-   PHONE
-================================================== */
-
-.phone .icon{
-
-    color:#d7b77c;
-
-}
-
-
-/* ==================================================
-   TELEGRAM
-================================================== */
-
-.telegram .icon{
-
-    color:#70aebd;
-
-}
-
-
-/* ==================================================
-   INSTAGRAM
-================================================== */
-
-.instagram .icon{
-
-    color:#d48b67;
-
-}
-
-
-/* ==================================================
-   WEBSITE
-================================================== */
-
-.website .icon{
-
-    color:var(--gold);
-
-}
-
-
-/* ==================================================
-   LOCATION
-================================================== */
-
-.location .icon{
-
-    color:var(--gold);
-
-}
-
-.location{
-
-    background:
-
-        linear-gradient(
-            110deg,
-            rgba(213,154,85,.08),
-            rgba(244,236,223,.02)
-        );
-
-}
-
-
-/* ==================================================
-   LINK TEXT
-================================================== */
-
-.link-text{
-
-    flex:1;
-
-    text-align:right;
-
-    padding-right:14px;
-
-}
-
-
-/* English title */
-
-.link-title{
-
-    display:block;
-
-    direction:ltr;
-
-    text-align:right;
-
-    font-family:"Vazirmatn",sans-serif;
-
-    font-size:14px;
-
-    font-weight:600;
-
-    color:var(--cream);
-
-}
-
-
-/* Persian subtitle */
-
-.link-subtitle{
-
-    display:block;
-
-    margin-top:4px;
-
-    font-size:10.5px;
-
-    color:var(--gray);
-
-}
-
-
-/* arrow */
-
-.arrow{
-
-    color:#5d5751;
-
-    font-size:10px;
-
-    margin-left:4px;
-
-}
-
-
-/* ==================================================
-   WEBSITE SPECIAL
-================================================== */
-
-.website{
-
-    background:
-
-        linear-gradient(
-            110deg,
-            rgba(213,154,85,.09),
-            rgba(244,236,223,.025)
-        );
-
-}
-
-
-/* ==================================================
-   OMEGA CREATOR
-================================================== */
-
-.omega-promo{
-
-    margin-top:15px;
-
-    min-height:64px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:10px;
-
-    padding:10px 16px;
-
-    border-radius:18px;
-
-    text-decoration:none;
-
-    color:var(--cream);
-
-    background:
-
-        linear-gradient(
-            110deg,
-            rgba(213,154,85,.10),
-            rgba(244,236,223,.025)
-        );
-
-    border:1px solid rgba(213,154,85,.22);
-
+.link:hover {
+    transform: translateY(-4px) scale(1.015);
+    border-color: rgba(212,175,55,.32);
     box-shadow:
-
-        0 10px 30px rgba(0,0,0,.18);
-
-    transition:
-
-        transform .25s ease,
-
-        border-color .25s ease,
-
-        box-shadow .25s ease,
-
-        background .25s ease;
-
+        0 15px 35px rgba(0,0,0,.45),
+        0 0 20px rgba(212,175,55,.05);
 }
 
+/* ================= SVG ICONS ================= */
 
-.omega-promo:hover{
+.icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    margin-right: 13px;
+    background: linear-gradient(145deg,#1b1b1b,#080808);
+    border: 1px solid rgba(212,175,55,.22);
+    color: var(--gold);
+    transition: .35s;
+}
 
-    transform:translateY(-3px);
+.icon svg {
+    width: 25px;
+    height: 25px;
+    display: block;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform .35s, filter .35s;
+}
 
-    border-color:
+.link:hover .icon {
+    background: linear-gradient(145deg,#400000,#0b0b0b);
+    color: #fff0a0;
+    border-color: rgba(212,175,55,.6);
+    box-shadow: 0 0 18px rgba(120,0,0,.25);
+}
 
-        rgba(213,154,85,.45);
+.link:hover .icon svg {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 5px currentColor);
+}
 
-    background:
+/* PHONE */
 
-        linear-gradient(
-            110deg,
-            rgba(213,154,85,.14),
-            rgba(244,236,223,.035)
-        );
+.phone-icon svg {
+    fill: currentColor;
+    stroke: none;
+}
 
+/* TELEGRAM */
+
+.telegram-icon svg {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* INSTAGRAM */
+
+.instagram-icon svg {
+    stroke-width: 1.9;
+}
+
+.instagram-icon .ig-dot {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* WHATSAPP */
+
+.whatsapp-icon svg {
+    stroke-width: 1.9;
+}
+
+.whatsapp-icon .wa-phone {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* ================= LINK TEXT ================= */
+
+.link-info {
+    flex: 1;
+    text-align: left;
+    min-width: 0;
+}
+
+.link-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.link-value {
+    display: block;
+    font-size: 10px;
+    color: #777;
+    letter-spacing: .5px;
+    overflow-wrap: anywhere;
+}
+
+.arrow {
+    color: #444;
+    font-size: 12px;
+    transition: .35s;
+    margin-left: 8px;
+}
+
+.link:hover .arrow {
+    color: var(--gold);
+    transform: translateX(4px);
+}
+
+/* ================= OMEGA BRAND ================= */
+
+.omega-section {
+    position: relative;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.055);
+    text-align: center;
+}
+
+.omega-powered {
+    font-size: 7px;
+    letter-spacing: 4px;
+    color: #666;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.omega-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    padding: 10px 18px;
+    border-radius: 14px;
+    text-decoration: none;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        rgba(212,175,55,.08),
+        rgba(100,0,0,.10)
+    );
+    border: 1px solid rgba(212,175,55,.18);
+    transition: .4s cubic-bezier(.16,1,.3,1);
+    box-shadow: inset 0 0 20px rgba(255,255,255,.015);
+}
+
+.omega-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.09),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: .8s;
+}
+
+.omega-link:hover::before {
+    left: 130%;
+}
+
+.omega-logo {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,.5);
+    color: var(--gold);
+    font-family: "Cinzel", serif;
+    font-size: 17px;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(212,175,55,.08);
+    transition: .4s;
+}
+
+.omega-logo::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    border: 1px solid rgba(139,0,0,.7);
+}
+
+.omega-name {
+    font-family: "Cinzel", serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #ddd;
+    transition: .4s;
+}
+
+.omega-mini {
+    display: block;
+    font-size: 6px;
+    letter-spacing: 2px;
+    color: #8b7846;
+    margin-top: 2px;
+}
+
+.omega-link:hover {
+    transform: translateY(-4px) scale(1.04);
+    border-color: rgba(212,175,55,.5);
     box-shadow:
-
-        0 12px 34px rgba(213,154,85,.10);
-
+        0 12px 30px rgba(0,0,0,.45),
+        0 0 25px rgba(212,175,55,.09);
 }
 
-
-.omega-mark{
-
-    font-family:Arial,sans-serif;
-
-    font-size:18px;
-
-    font-weight:800;
-
-    letter-spacing:3px;
-
-    color:var(--gold);
-
+.omega-link:hover .omega-logo {
+    color: white;
+    border-color: var(--gold);
+    box-shadow: 0 0 18px rgba(212,175,55,.3);
+    transform: rotate(180deg);
 }
 
-
-.omega-text{
-
-    font-size:10.5px;
-
-    color:var(--gray);
-
+.omega-link:hover .omega-name {
+    color: var(--gold);
+    letter-spacing: 5px;
 }
 
+/* ================= FOOTER ================= */
 
-.omega-promo > i{
-
-    font-size:11px;
-
-    color:var(--gold);
-
-    margin-right:3px;
-
+.footer {
+    text-align: center;
+    margin-top: 14px;
+    color: #555;
+    font-size: 7px;
+    letter-spacing: 3px;
 }
 
-
-/* ==================================================
-   BOTTOM ACTIONS
-================================================== */
-
-.actions{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:10px;
-
-    margin-top:15px;
-
+.footer span {
+    color: var(--red);
 }
 
-
-.action{
-
-    min-height:78px;
-
-    border-radius:18px;
-
-    background:#121212;
-
-    border:1px solid var(--border);
-
-    color:var(--cream);
-
-    font-family:"Vazirmatn",sans-serif;
-
-    cursor:pointer;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-    transition:.25s;
-
-}
-
-
-.action:hover{
-
-    transform:translateY(-3px);
-
-    background:#191919;
-
-}
-
-
-.action i{
-
-    font-size:20px;
-
-}
-
-
-.action span{
-
-    font-size:10.5px;
-
-    color:var(--gray);
-
-}
-
-
-/* action colors */
-
-.save i{
-
-    color:#c9ae7a;
-
-}
-
-.share i{
-
-    color:#c98969;
-
-}
-
-.qr i{
-
-    color:var(--gold);
-
-}
-
-
-/* ==================================================
-   QR BOX
-================================================== */
-
-.qr-box{
-
-    display:none;
-
-    margin-top:14px;
-
-    padding:20px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    background:#111;
-
-    border:1px solid var(--border);
-
-}
-
-
-.qr-box.show{
-
-    display:block;
-
-    animation:fade .3s ease;
-
-}
-
-
-.qr-box img{
-
-    width:190px;
-
-    height:190px;
-
-    background:white;
-
-    padding:8px;
-
-    border-radius:14px;
-
-}
-
-
-.qr-box p{
-
-    margin-top:10px;
-
-    font-size:10px;
-
-    color:var(--gray);
-
-}
-
-
-/* ==================================================
-   FOOTER
-================================================== */
-
-.footer{
-
-    text-align:center;
-
-    margin-top:27px;
-
-    color:#514b45;
-
-    font-family:"Anton",sans-serif;
-
-    font-size:10px;
-
-    letter-spacing:2px;
-
-}
-
-
-.footer span{
-
-    color:var(--gold);
-
-    padding:0 5px;
-
-}
-
-
-/* ==================================================
-   ANIMATION
-================================================== */
-
-@keyframes fade{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(-5px);
-
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+    body {
+        padding: 14px;
     }
 
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
+    .card {
+        padding: 30px 17px 18px;
+        border-radius: 26px;
     }
 
+    .avatar-wrapper {
+        width: 115px;
+        height: 115px;
+    }
+
+    .avatar {
+        width: 105px;
+        height: 105px;
+    }
+
+    .name {
+        font-size: 23px;
+        letter-spacing: 1.5px;
+    }
+
+    .subtitle {
+        font-size: 8px;
+        letter-spacing: 4px;
+    }
+
+    .link {
+        min-height: 64px;
+    }
+
+    .omega-link {
+        padding: 9px 16px;
+    }
 }
 
-
-/* ==================================================
-   MOBILE
-================================================== */
-
-@media(max-width:380px){
-
-    body{
-
-        padding-left:12px;
-
-        padding-right:12px;
-
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
     }
-
-
-    .logo-frame{
-
-        width:112px;
-
-        height:112px;
-
-    }
-
-
-    .brand-persian,
-    .brand-english{
-
-        font-size:28px;
-
-    }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
+<!-- BACKGROUND -->
 
-<div class="container">
+<div class="background" aria-hidden="true">
+    <div class="red-light"></div>
+    <div class="gold-light"></div>
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+    <div class="particle p6"></div>
+    <div class="particle p7"></div>
+    <div class="particle p8"></div>
+</div>
 
+<!-- MAIN CARD -->
 
-    <!-- =========================================
-         TOP
-    ========================================== -->
+<main class="card">
+    <div class="top-line"></div>
 
-    <div class="top-decoration">
-
-        <span class="flower">✿</span>
-
-        <span class="line"></span>
-
-        <span class="flower">✿</span>
-
-    </div>
-
-
-
-    <!-- =========================================
-         PROFILE
-    ========================================== -->
+    <!-- PROFILE -->
 
     <section class="profile">
-
-
-        <!-- LOGO -->
-
-        <div class="logo-frame">
-
-            <div class="logo">
-
-                <img
-                    src="logo.png"
-                    alt="Sajad Gol">
-
-            </div>
-
+        <div class="avatar-wrapper">
+            <img
+                class="avatar"
+                src="profile.jpg"
+                alt="Amir Hosin Shad"
+                onerror="this.style.visibility='hidden'">
         </div>
 
-
-
-        <!-- BRAND NAME -->
-
-        <div class="brand-name">
-
-            <span class="brand-persian">
-                سجاد
-            </span>
-
-            <span class="brand-english">
-                GOL
-            </span>
-
+        <div class="status">
+            <span class="status-dot"></span>
+            ONLINE
         </div>
 
+        <h1 class="name">AMIR HOSIN SHAD</h1>
 
-
-        <!-- USERNAME -->
-
-        <div class="username">
-
-            @sajad_.gol
-
-        </div>
-
-
-
-        <!-- DESCRIPTION -->
-
-        <div class="description">
-
-            <div class="title">
-
-                <span class="flower">✿</span>
-
-                گلفروشی سجاد گل
-
-                <span class="flower">✿</span>
-
-            </div>
-
-            گل‌های زیبا برای لحظه‌های خاص شما
-
-            <br>
-
-            سفارش و ارسال گل در رشت
-
-        </div>
-
-
+        <div class="subtitle">PRIVATE DIGITAL CARD</div>
     </section>
 
+    <!-- ORNAMENT -->
 
+    <div class="ornament" aria-hidden="true">
+        <div class="ornament-line"></div>
+        <div class="ornament-symbol">◆</div>
+        <div class="ornament-line"></div>
+    </div>
 
-    <!-- =========================================
-         MAIN LINKS
-    ========================================== -->
+    <!-- SOCIAL LINKS -->
 
     <div class="links">
 
+        <!-- PHONE -->
 
-        <!-- ================= PHONE ================= -->
-
-        <a
-            class="link phone"
-            href="tel:+989369855063"
-        >
-
-            <div class="icon">
-
-                <i class="fa-solid fa-phone"></i>
-
+        <a class="link" href="tel:+989384704646">
+            <div class="icon phone-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6.6 2.8 3.9 3C2.8 3.1 2 4 2.1 5.1
+                    c.6 9.2 7.6 16.2 16.8 16.8
+                    1.1.1 2-.7 2.1-1.8l.2-2.7
+                    -5-2.3-2.1 2.1a15 15 0 0 1-6.9-6.9l2.1-2.1z"/>
+                </svg>
             </div>
 
-
-            <div class="link-text">
-
-                <span class="link-title">
-                    Phone Number
-                </span>
-
-                <span class="link-subtitle">
-                    شماره موبایل
-                </span>
-
+            <div class="link-info">
+                <span class="link-title">Phone</span>
+                <span class="link-value">+98 938 470 4646</span>
             </div>
 
-
-            <i class="fa-solid fa-chevron-left arrow"></i>
-
+            <span class="arrow" aria-hidden="true">›</span>
         </a>
 
+        <!-- TELEGRAM -->
 
+        <a class="link"
+           href="https://t.me/Amirm_shad"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- ================= TELEGRAM ================= -->
-
-        <a
-            class="link telegram"
-            href="https://t.me/Sajadtna"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="icon">
-
-                <i class="fa-brands fa-telegram"></i>
-
+            <div class="icon telegram-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21.8 3.6 18.5 20c-.2 1.1-.9 1.4-1.8.9l-5.2-3.8-2.5 2.4c-.3.3-.6.5-1.1.5l.4-5.3 9.8-8.9c.4-.3-.1-.5-.6-.2L5.4 13.2.2 11.6c-1.1-.4 0-1.1.8-1.4l19.6-7.6c.9-.3 1.6.2 1.2 1z"/>
+                </svg>
             </div>
 
-
-            <div class="link-text">
-
-                <span class="link-title">
-                    Telegram
-                </span>
-
-                <span class="link-subtitle">
-                    تلگرام
-                </span>
-
+            <div class="link-info">
+                <span class="link-title">Telegram</span>
+                <span class="link-value">@Amirm_shad</span>
             </div>
 
-
-            <i class="fa-solid fa-chevron-left arrow"></i>
-
+            <span class="arrow" aria-hidden="true">›</span>
         </a>
 
+        <!-- INSTAGRAM -->
 
+        <a class="link"
+           href="https://instagram.com/amirmshad"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- ================= INSTAGRAM ================= -->
-
-        <a
-            class="link instagram"
-            href="https://instagram.com/sajad_.gol"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="icon">
-
-                <i class="fa-brands fa-instagram"></i>
-
+            <div class="icon instagram-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5"/>
+                    <circle cx="12" cy="12" r="4.2"/>
+                    <circle class="ig-dot" cx="17.5" cy="6.7" r="1.2"/>
+                </svg>
             </div>
 
-
-            <div class="link-text">
-
-                <span class="link-title">
-                    Instagram
-                </span>
-
-                <span class="link-subtitle">
-                    اینستاگرام
-                </span>
-
+            <div class="link-info">
+                <span class="link-title">Instagram</span>
+                <span class="link-value">@amirmshad</span>
             </div>
 
-
-            <i class="fa-solid fa-chevron-left arrow"></i>
-
+            <span class="arrow" aria-hidden="true">›</span>
         </a>
 
+        <!-- WHATSAPP -->
 
+        <a class="link"
+           href="https://wa.me/989384704646"
+           target="_blank"
+           rel="noopener noreferrer">
 
-        <!-- ================= WEBSITE ================= -->
-
-        <a
-            class="link website"
-            href="https://sajadgol.ir/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="icon">
-
-                <i class="fa-solid fa-globe"></i>
-
+            <div class="icon whatsapp-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.5 11.7a8.5 8.5 0 0 1-12.4 7.6L3 20.8l1.5-5A8.5 8.5 0 1 1 20.5 11.7Z"/>
+                    <path class="wa-phone" d="M8.2 7.5c-.5.1-.9.8-.9 1.5 0 2 2.9 5.4 5.3 6.5.9.4 1.8.3 2.3-.5l.7-1.1-2.7-1.7-1.1 1c-1.1-.5-2-1.4-2.5-2.5l1-1.1-1.6-2.6-1 .5Z"/>
+                </svg>
             </div>
 
-
-            <div class="link-text">
-
-                <span class="link-title">
-                    Website
-                </span>
-
-                <span class="link-subtitle">
-                    وب‌سایت
-                </span>
-
+            <div class="link-info">
+                <span class="link-title">WhatsApp</span>
+                <span class="link-value">+98 938 470 4646</span>
             </div>
 
-
-            <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-
+            <span class="arrow" aria-hidden="true">›</span>
         </a>
-
-
-
-        <!-- ================= LOCATION ================= -->
-
-        <a
-            class="link location"
-            href="https://maps.app.goo.gl/83iifeWjnusHrSeU7?g_st=ac"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            <div class="icon">
-
-                <i class="fa-solid fa-location-dot"></i>
-
-            </div>
-
-
-            <div class="link-text">
-
-                <span class="link-title">
-                    Location
-                </span>
-
-                <span class="link-subtitle">
-                    آدرس و مسیریابی در رشت
-                </span>
-
-            </div>
-
-
-            <i class="fa-solid fa-location-arrow arrow"></i>
-
-        </a>
-
 
     </div>
 
-
-
-    <!-- =========================================
-         OMEGA CREATOR
-    ========================================== -->
-
-    <a
-        class="omega-promo"
-        href="https://omegawebb.github.io/OMEGA/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="سایت سازنده کارت دیجیتال OMEGA"
-    >
-
-        <span class="omega-mark">
-            OMEGA
-        </span>
-
-        <span class="omega-text">
-            طراحی و ساخت کارت دیجیتال توسط OMEGA
-        </span>
-
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-    </a>
-
-
-
-    <!-- =========================================
-         ACTIONS
-    ========================================== -->
-
-    <div class="actions">
-
-
-        <!-- SAVE CONTACT -->
-
-        <button
-            class="action save"
-            onclick="saveContact()"
-        >
-
-            <i class="fa-solid fa-address-book"></i>
-
-            <span>
-                Save Contact
-            </span>
-
-        </button>
-
-
-
-        <!-- SHARE -->
-
-        <button
-            class="action share"
-            onclick="shareCard()"
-        >
-
-            <i class="fa-solid fa-share-nodes"></i>
-
-            <span>
-                Share
-            </span>
-
-        </button>
-
-
-
-        <!-- QR -->
-
-        <button
-            class="action qr"
-            onclick="toggleQR()"
-        >
-
-            <i class="fa-solid fa-qrcode"></i>
-
-            <span>
-                QR Code
-            </span>
-
-        </button>
-
-
-    </div>
-
-
-
-    <!-- =========================================
-         QR CODE
-    ========================================== -->
-
-    <div
-        class="qr-box"
-        id="qrBox"
-    >
-
-        <img
-            id="qrImage"
-            alt="QR Code">
-
-        <p>
-            Scan to open Sajad Gol
-        </p>
-
-    </div>
-
-
-
-    <!-- =========================================
-         FOOTER
-    ========================================== -->
-
-    <div class="footer">
-
-        <span>✿</span>
-
-        SAJAD GOL
-
-        <span>✿</span>
-
-    </div>
-
-
-</div>
-
-
-
-<script>
-
-
-/* ==================================================
-   SAVE CONTACT
-================================================== */
-
-function saveContact(){
-
-    const vcard =
-`BEGIN:VCARD
-VERSION:3.0
-FN:سجاد گل
-ORG:سجاد گل
-TEL;TYPE=CELL:+989369855063
-URL:https://sajadgol.ir/
-NOTE:گلفروشی سجاد گل - رشت
-END:VCARD`;
-
-
-    const blob = new Blob(
-        [vcard],
-        {
-            type:"text/vcard;charset=utf-8"
-        }
-    );
-
-
-    const url =
-        URL.createObjectURL(blob);
-
-
-    const a =
-        document.createElement("a");
-
-
-    a.href = url;
-
-    a.download = "Sajad-Gol.vcf";
-
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-
-    URL.revokeObjectURL(url);
-
-}
-
-
-/* ==================================================
-   SHARE
-================================================== */
-
-async function shareCard(){
-
-    const shareData = {
-
-        title:"سجاد گل",
-
-        text:
-        "کارت دیجیتال سجاد گل 🌷",
-
-        url:
-        "https://sajadgol.ir/"
-
-    };
-
-
-    if(navigator.share){
-
-        try{
-
-            await navigator.share(
-                shareData
-            );
-
-        }
-
-        catch(error){
-
-            console.log(
-                "Share cancelled"
-            );
-
-        }
-
-    }
-
-    else{
-
-        try{
-
-            await navigator.clipboard.writeText(
-                "https://sajadgol.ir/"
-            );
-
-            alert(
-                "لینک کارت کپی شد"
-            );
-
-        }
-
-        catch(error){
-
-            alert(
-                "https://sajadgol.ir/"
-            );
-
-        }
-
-    }
-
-}
-
-
-/* ==================================================
-   QR CODE
-================================================== */
-
-function toggleQR(){
-
-    const box =
-        document.getElementById(
-            "qrBox"
-        );
-
-
-    const image =
-        document.getElementById(
-            "qrImage"
-        );
-
-
-    if(!box.classList.contains("show")){
-
-        const data =
-            encodeURIComponent(
-                "https://sajadgol.ir/"
-            );
-
-
-        image.src =
-            "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data="
-            + data;
-
-    }
-
-
-    box.classList.toggle("show");
-
-}
-
-</script>
-
+    <!-- OMEGA BRAND -->
+
+    <section class="omega-section">
+        <div class="omega-powered">DESIGNED &amp; POWERED BY</div>
+
+        <a class="omega-link"
+           href="https://omegawebb.github.io/OMEGA/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Visit OMEGA Digital Studio">
+
+            <div class="omega-logo">Ω</div>
+
+            <div>
+                <div class="omega-name">OMEGA</div>
+                <span class="omega-mini">DIGITAL STUDIO</span>
+            </div>
+        </a>
+
+        <div class="footer">
+            PRIVATE CARD <span>•</span> 2026
+        </div>
+    </section>
+
+</main>
 
 </body>
-
 </html>
